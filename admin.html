@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>لوحة تحكم الأدعية</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css ">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal :wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* نفس الاستايل الذي كان عندك */
+    body {
+      font-family: 'Tajawal', sans-serif;
+      margin: 30px;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #c0392b;
+    }
+
+    .form-container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 20px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    button:hover {
+      background-color: #c0392b;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ecf0f1;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+    }
+
+    .edit-btn {
+      background-color: #f39c12;
+    }
+
+    .edit-btn:hover {
+      background-color: #e67e22;
+    }
+
+    .delete-btn {
+      background-color: #e74c3c;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+
+    .alert {
+      text-align: center;
+      padding: 10px;
+      margin: 20px 0;
+      border-radius: 6px;
+      display: none;
+    }
+
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .danger {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <h1><i class="fas fa-cog"></i> لوحة تحكم الأدعية</h1>
+
+  <!-- تعديل النص المتحرك -->
+  <label for="movingText">✍️ تعديل النص المتحرك:</label>
+  <input type="text" id="movingText" placeholder="ادخل النص الجديد (مثال: بسم الله الرحمن الرحيم)">
+  <button onclick="updateMovingText()">💾 حفظ النص المتحرك</button>
+
+  <!-- اختيار القسم -->
+  <label for="sectionSelect">📁 اختر القسم:</label>
+  <select id="sectionSelect">
+    <option value="morning">🌅 دعاء الصباح</option>
+    <option value="evening">🌙 دعاء المساء</option>
+    <option value="friday">🕌 دعاء الجمعة</option>
+    <option value="azkar">📖 أذكار الصباح والمساء</option>
+  </select>
+
+  <!-- كلمة المرور -->
+  <label for="adminPassword">🔒 كلمة المرور:</label>
+  <input type="password" id="adminPassword" placeholder="أدخل كلمة المرور">
+
+  <!-- إضافة دعاء جديد -->
+  <label for="newDuaInput">➕ أدخل الدعاء أو الذكر الجديد:</label>
+  <textarea id="newDuaInput" rows="3" placeholder="اكتب الدعاء هنا..."></textarea>
+
+  <button onclick="addCustomDua()">➕ إضافة دعاء</button>
+
+  <!-- عرض قائمة الأدعية -->
+  <h2 style="margin-top: 30px;"><i class="fas fa-list-ul"></i> قائمة الأدعية</h2>
+  <ul id="duaList"></ul>
+
+  <!-- تغيير لون الخلفية -->
+  <label for="bgColor">🎨 تغيير لون خلفية الصفحة:</label>
+  <input type="color" id="bgColor" value="#ffffff">
+  <button onclick="changeBackgroundColor()">💾 حفظ اللون</button>
+
+  <!-- تغيير لون الأزرار -->
+  <label for="btnColor">🖌️ تغيير لون الأزرار:</label>
+  <input type="color" id="btnColor" value="#e74c3c">
+  <button onclick="changeButtonColor()">💾 حفظ لون الأزرار</button>
+
+  <!-- تغيير شكل الشريط العلوي -->
+  <label for="navbarRadius">📐 زوايا الشريط العلوي:</label>
+  <select id="navbarRadius">
+    <option value="5px">حاد</option>
+    <option value="10px">مستدير قليلًا</option>
+    <option value="20px">مستدير أكثر</option>
+    <option value="50%">دائري تمامًا</option>
+  </select>
+  <button onclick="changeNavbarStyle()">💾 تحديث الشريط</button>
+
+  <!-- رسالة حالة -->
+  <div id="messageBox" class="alert success" style="display: none;"></div>
+</div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js "></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js "></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "your-project-id.firebaseapp.com",
+    databaseURL: "https://your-project-id.firebaseio.com ",
+    projectId: "your-project-id",
+    storageBucket: "your-project-id.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+  let currentDuas = {};
+
+  window.onload = function () {
+    firebase.database().ref('duas').on('value', (snapshot) => {
+      currentDuas = snapshot.val() || {};
+      document.getElementById('sectionSelect').onchange = renderDuaList;
+      renderDuaList();
+    });
+  };
+
+  function renderDuaList() {
+    const section = document.getElementById('sectionSelect').value;
+    const list = document.getElementById('duaList');
+    list.innerHTML = '';
+
+    if (!currentDuas[section]) currentDuas[section] = [];
+
+    currentDuas[section].forEach((text, index) => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span contenteditable="true" onblur="updateDua(${index}, this.innerText)" onfocus="this.dataset.oldText = this.innerText;">
+          ${text}
+        </span>
+        <div class="controls">
+          <button class="edit-btn" onclick="saveAllDuas()">💾 حفظ</button>
+          <button class="delete-btn" onclick="deleteDua(${index})">❌ حذف</button>
+        </div>
+      `;
+      list.appendChild(li);
+    });
+  }
+
+  function addCustomDua() {
+    const enteredPass = document.getElementById('adminPassword').value.trim();
+    const newDua = document.getElementById('newDuaInput').value.trim();
+
+    if (enteredPass !== "sudan10##") {
+      showMessage("❌ كلمة المرور خاطئة", "danger");
+      return;
+    }
+
+    if (!newDua) {
+      showMessage("❌ الرجاء كتابة دعاء", "danger");
+      return;
+    }
+
+    const section = document.getElementById('sectionSelect').value;
+    if (!currentDuas[section]) currentDuas[section] = [];
+    currentDuas[section].push(newDua);
+
+    showMessage("✅ تم الإضافة بنجاح", "success");
+    saveAllDuas();
+    renderDuaList();
+  }
+
+  function updateDua(index, newText) {
+    const section = document.getElementById('sectionSelect').value;
+    currentDuas[section][index] = newText;
+    showMessage("✏️ تم التعديل مؤقتًا", "success");
+  }
+
+  function deleteDua(index) {
+    const section = document.getElementById('sectionSelect').value;
+    if (confirm("هل تريد حذف هذا الدعاء؟")) {
+      currentDuas[section].splice(index, 1);
+      saveAllDuas();
+      showMessage("✅ تم الحذف بنجاح", "success");
+      renderDuaList();
+    }
+  }
+
+  function saveAllDuas() {
+    firebase.database().ref('duas').set(currentDuas);
+    showMessage("✅ تم الحفظ في السحابة", "success");
+  }
+
+  function updateMovingText() {
+    const newText = document.getElementById('movingText').value.trim();
+    if (!newText) {
+      alert("❌ لا يمكن ترك النص فارغًا");
+      return;
+    }
+    firebase.database().ref('settings/movingText').set(newText);
+    showMessage("✅ تم تحديث النص المتحرك", "success");
+  }
+
+  function changeBackgroundColor() {
+    const bgColor = document.getElementById('bgColor').value;
+    firebase.database().ref('settings/bgColor').set(bgColor);
+    showMessage("✅ تم تغيير لون الخلفية", "success");
+  }
+
+  function changeButtonColor() {
+    const btnColor = document.getElementById('btnColor').value;
+    firebase.database().ref('settings/btnColor').set(btnColor);
+    showMessage("✅ تم تغيير لون الأزرار", "success");
+  }
+
+  function changeNavbarStyle() {
+    const radius = document.getElementById('navbarRadius').value;
+    firebase.database().ref('settings/navbarRadius').set(radius);
+    showMessage("✅ تم تغيير زوايا الشريط العلوي", "success");
+  }
+
+  function showMessage(text, type) {
+    const msgBox = document.getElementById('messageBox');
+    msgBox.className = `alert ${type}`;
+    msgBox.style.display = 'block';
+    msgBox.textContent = text;
+    setTimeout(() => {
+      msgBox.style.display = 'none';
+    }, 3000);
+  }
+</script>
+
+</body>
+</html>
