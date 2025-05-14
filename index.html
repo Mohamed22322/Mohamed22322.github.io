@@ -1,0 +1,609 @@
+ <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>أدعية الصباح والمساء ويوم الجمعة</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css ">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal :wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* نفس الاستايل الموجود في الكود الخاص بك */
+    body {
+      font-family: 'Tajawal', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.8;
+      background-image: url('https://images.unsplash.com/photo-1519714388178-351088c6fbd2?auto=format&fit=crop&w=1600&q=80 ');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.95);
+      min-height: 100vh;
+      padding-bottom: 50px;
+    }
+    #movingTextContainer {
+      text-align: center;
+      padding: 10px;
+      background-color: #fff8f0;
+      border-top: 1px solid #e74c3c;
+      border-bottom: 1px solid #e74c3c;
+    }
+    #movingTextContainer marquee {
+      color: red;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .navbar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: #2c3e50;
+      padding: 10px 5px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+    .navbar button {
+      margin: 5px 8px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 20px;
+      background-color: #e74c3c;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .navbar button:hover {
+      background-color: #c0392b;
+      transform: translateY(-2px);
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+      direction: rtl;
+    }
+    h1 {
+      text-align: center;
+      color: #c0392b;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #e74c3c;
+      padding-bottom: 10px;
+      font-size: 24px;
+    }
+    .section {
+      display: none;
+      margin-top: 30px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    .section.active {
+      display: block;
+    }
+    .dua-box {
+      background-color: #fdfdfd;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      transition: background-color 0.3s ease;
+    }
+    .dua-box:hover {
+      background-color: #f7f7f7;
+    }
+    .dua-box p {
+      font-size: 17px;
+      margin: 0;
+      cursor: pointer;
+    }
+    .buttons {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    button[type="button"] {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    .copy-btn {
+      background-color: #e74c3c;
+    }
+    .copy-btn:hover {
+      background-color: #c0392b;
+    }
+    .whatsapp-btn {
+      background-color: #25d366;
+    }
+    .whatsapp-btn:hover {
+      background-color: #1ebf5b;
+    }
+    .favorite-btn {
+      background-color: #f1c40f;
+    }
+    .favorite-btn:hover {
+      background-color: #f39c12;
+    }
+    .edit-btn {
+      background-color: #f39c12;
+    }
+    .edit-btn:hover {
+      background-color: #d35400;
+    }
+    .add-dua-form {
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      background-color: #fff8f0;
+    }
+    .add-dua-form input[type="text"],
+    .add-dua-form input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .add-dua-form button {
+      width: 100%;
+      padding: 10px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .add-dua-form button:hover {
+      background-color: #2980b9;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #2c3e50;
+      color: white;
+      font-size: 14px;
+    }
+    .full-dua-view {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 40px 20px;
+      overflow-y: auto;
+      display: none;
+    }
+    .full-dua-content {
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+    .full-dua-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .full-dua-buttons button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .full-dua-buttons button:nth-child(1) { background-color: #f1c40f; }
+    .full-dua-buttons button:nth-child(2) { background-color: #e74c3c; }
+    .full-duا-buttons button:nth-child(3) { background-color: #25d366; }
+    .full-duا-buttons button:nth-child(4) { background-color: #f39c12; }
+    .full-duا-buttons button:nth-child(5) { background-color: #2c3e50; }
+    .full-duا-buttons button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+<div class="overlay">
+  <!-- النص المتحرك -->
+  <div id="movingTextContainer">
+    <marquee behavior="scroll" direction="right" scrollamount="6">
+      ❤️ بسم الله الرحمن الرحيم ❤️
+    </marquee>
+  </div>
+  <!-- شريط التنقل -->
+  <div class="navbar">
+    <button onclick="showSection('morning')"><i class="fas fa-sun"></i> دعاء الصباح</button>
+    <button onclick="showSection('evening')"><i class="fas fa-moon"></i> دعاء المساء</button>
+    <button onclick="showSection('friday')"><i class="fas fa-mosque"></i> دعاء الجمعة</button>
+    <button onclick="showSection('favorites')"><i class="fas fa-heart"></i> المفضلة</button>
+    <button onclick="showSection('azkar')"><i class="fas fa-book-open"></i> أذكار الصباح والمساء</button>
+  </div>
+  <!-- الحاوية الرئيسية -->
+  <div class="container">
+    <!-- قسم الصباح -->
+    <div id="morning" class="section active morning-section">
+      <h1>🌅 دعاء الصباح</h1>
+      <div class="dua-box" data-default="true">
+        <p onclick="showFullDua(this.textContent)">اللهم بك أصبحنا وبك أمسينا، وبك نحيا ومماتنا وإليك النشور.</p>
+        <div class="buttons">
+          <button class="favorite-btn" onclick="toggleFavorite(this)">❤️ إضافة للمفضلة</button>
+          <button class="copy-btn" onclick="copyText(this)">📋 نسخ</button>
+          <button class="whatsapp-btn" onclick="shareOnWhatsApp(this)">💬 مشاركة</button>
+        </div>
+      </div>
+      <div class="add-dua-form">
+        <input type="password" id="passwordMorning" placeholder="كلمة المرور">
+        <input type="text" id="customDuaMorning" placeholder="أدخل دعاء جديد">
+        <button onclick="addCustomDua('morning')">➕ إضافة دعاء</button>
+      </div>
+    </div>
+    <!-- قسم المساء -->
+    <div id="evening" class="section evening-section">
+      <h1>🌙 دعاء المساء</h1>
+      <div class="dua-box" data-default="true">
+        <p onclick="showFullDua(this.textContent)">اللهم بك أمسينا، وبك نحيا، وبك نموت، وإليك المصير.</p>
+        <div class="buttons">
+          <button class="favorite-btn" onclick="toggleFavorite(this)">❤️ إضافة للمفضلة</button>
+          <button class="copy-btn" onclick="copyText(this)">📋 نسخ</button>
+          <button class="whatsapp-btn" onclick="shareOnWhatsApp(this)">💬 مشاركة</button>
+        </div>
+      </div>
+      <div class="add-dua-form">
+        <input type="password" id="passwordEvening" placeholder="كلمة المرور">
+        <input type="text" id="customDuaEvening" placeholder="أدخل دعاء جديد">
+        <button onclick="addCustomDua('evening')">➕ إضافة دعاء</button>
+      </div>
+    </div>
+    <!-- قسم الجمعة -->
+    <div id="friday" class="section friday-section">
+      <h1>🕌 دعاء الجمعة</h1>
+      <div class="dua-box" data-default="true">
+        <p onclick="showFullDua(this.textContent)">اللهم اجعلني من عتقائك من النار في يوم الجمعة.</p>
+        <div class="buttons">
+          <button class="favorite-btn" onclick="toggleFavorite(this)">❤️ إضافة للمفضلة</button>
+          <button class="copy-btn" onclick="copyText(this)">📋 نسخ</button>
+          <button class="whatsapp-btn" onclick="shareOnWhatsApp(this)">💬 مشاركة</button>
+        </div>
+      </div>
+      <div class="add-dua-form">
+        <input type="password" id="passwordFriday" placeholder="كلمة المرور">
+        <input type="text" id="customDuaFriday" placeholder="أدخل دعاء جديد">
+        <button onclick="addCustomDua('friday')">➕ إضافة دعاء</button>
+      </div>
+    </div>
+    <!-- قسم المفضلة -->
+    <div id="favorites" class="section favorite-section">
+      <h1>❤️ الأدعية المفضلة</h1>
+      <ul id="favoritesList"></ul>
+    </div>
+    <!-- قسم أذكار الصباح والمساء -->
+    <div id="azkar" class="section azkar-section">
+      <h1>📖 أذكار الصباح والمساء</h1>
+      <h2 style="color:#e74c3c;">🌅 أذكار الصباح</h2>
+      <div class="dua-box" data-default="true">
+        <p onclick="showFullDua(this.textContent)">
+          الحمد لله الذي جعل الليل لباسًا والنوم سباتًا وجعل النهار نشأة
+        </p>
+        <div class="buttons">
+          <button class="favorite-btn" onclick="toggleFavorite(this)">❤️ إضافة للمفضلة</button>
+          <button class="copy-btn" onclick="copyText(this)">📋 نسخ</button>
+          <button class="whatsapp-btn" onclick="shareOnWhatsApp(this)">💬 مشاركة</button>
+        </div>
+      </div>
+      <h2 style="color:#3498db;">🌙 أذكار المساء</h2>
+      <div class="dua-box" data-default="true">
+        <p onclick="showFullDua(this.textContent)">
+          اللهم كما أحييتني فاطرح لي عفوك عند المساء
+        </p>
+        <div class="buttons">
+          <button class="favorite-btn" onclick="toggleFavorite(this)">❤️ إضافة للمفضلة</button>
+          <button class="copy-btn" onclick="copyText(this)">📋 نسخ</button>
+          <button class="whatsapp-btn" onclick="shareOnWhatsApp(this)">💬 مشاركة</button>
+        </div>
+      </div>
+      <div class="add-dua-form">
+        <input type="password" id="passwordAzkar" placeholder="كلمة المرور">
+        <input type="text" id="customDuaAzkar" placeholder="أدخل ذكر جديد">
+        <button onclick="addCustomDua('azkar')">➕ إضافة ذكر</button>
+      </div>
+    </div>
+    <footer>
+      © 2025 - أدعية الصباح والمساء ويوم الجمعة | تصميم جميل بلون الأحمر والأسود ❤️🖤
+    </footer>
+  </div>
+</div>
+<!-- استقبال الإعدادات من لوحة التحكم -->
+<script>
+  // --- تطبيق التغييرات على الخلفية ---
+  const savedBg = localStorage.getItem('bgColor');
+  if (savedBg) {
+    document.body.style.backgroundColor = savedBg;
+    document.querySelector('.overlay').style.background = savedBg;
+  }
+
+  // --- تطبيق تغيير لون الأزرار ---
+  const savedBtnColor = localStorage.getItem('btnColor');
+  if (savedBtnColor) {
+    const buttons = document.querySelectorAll('.navbar button, .copy-btn, .whatsapp-btn, .favorite-btn, .edit-btn');
+    buttons.forEach(btn => {
+      btn.style.backgroundColor = savedBtnColor;
+    });
+  }
+
+  // --- تطبيق تغيير زوايا الشريط العلوي ---
+  const savedRadius = localStorage.getItem('navbarRadius');
+  if (savedRadius) {
+    const navbarButtons = document.querySelectorAll('.navbar button');
+    navbarButtons.forEach(btn => {
+      btn.style.borderRadius = savedRadius;
+    });
+  }
+
+  // --- تحديث النص المتحرك ---
+  const savedMovingText = localStorage.getItem('movingText');
+  if (savedMovingText) {
+    const movingTextEl = document.getElementById('movingTextContainer');
+    if (movingTextEl) {
+      movingTextEl.innerHTML = `
+        <marquee behavior="scroll" direction="right" scrollamount="6">
+          ❤️ ${savedMovingText} ❤️
+        </marquee>
+      `;
+    }
+  }
+</script>
+<!-- عرض كامل للدعاء -->
+<div id="fullDuaView" class="full-dua-view">
+  <div class="full-dua-content">
+    <p id="fullDuaText"></p>
+    <div class="full-dua-buttons">
+      <button onclick="addToFavoriteFromFull()">❤️ إضافة للمفضلة</button>
+      <button onclick="copyFullDua()">📋 نسخ</button>
+      <button onclick="shareFullDua()">💬 مشاركة</button>
+      <button onclick="editFullDua()">✍️ تعديل</button>
+      <button onclick="closeFullDua()">❌ إغلاق</button>
+    </div>
+  </div>
+</div>
+<script>
+  let currentFullDua = "";
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const titles = {
+      morning: '🌅 دعاء الصباح',
+      evening: '🌙 دعاء المساء',
+      friday: '🕌 دعاء الجمعة',
+      favorites: '❤️ الأدعية المفضلة',
+      azkar: '📖 أذكار الصباح والمساء'
+    };
+    const titleEl = document.querySelector(`#${id} h1`);
+    if (titleEl) titleEl.textContent = titles[id];
+    if (id === 'favorites') renderFavorites();
+  }
+
+  function showFullDua(text) {
+    currentFullDua = text;
+    document.getElementById('fullDuaText').textContent = text;
+    document.getElementById('fullDuaView').style.display = 'flex';
+  }
+
+  function closeFullDua() {
+    document.getElementById('fullDuaView').style.display = 'none';
+  }
+
+  function copyFullDua() {
+    const el = document.createElement('textarea');
+    el.value = currentFullDua;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    alert("✅ تم النسخ: " + currentFullDua);
+  }
+
+  function shareFullDua() {
+    const message = encodeURIComponent(currentFullDua + "\nمن تطبيق الأدعية 💫");
+    window.open(`https://wa.me/?text= ${message}`, '_blank');
+  }
+
+  function editFullDua() {
+    const newPassword = prompt("🔒 أدخل كلمة المرور:");
+    if (newPassword !== "sudan10##") {
+      alert("❌ كلمة المرور خاطئة");
+      return;
+    }
+    const newText = prompt("✏️ حرّر الدعاء:", currentFullDua);
+    if (newText && newText.trim()) {
+      ['morning', 'evening', 'friday', 'azkar'].forEach(section => {
+        const container = document.getElementById(section);
+        if (container) {
+          const boxes = container.querySelectorAll('.dua-box');
+          boxes.forEach(box => {
+            const para = box.querySelector('p');
+            if (para && para.textContent === currentFullDua) {
+              para.textContent = newText;
+            }
+          });
+        }
+      });
+      saveCustomDuas();
+      alert("✅ تم تعديل الدعاء بنجاح");
+      closeFullDua();
+    }
+  }
+
+  function addToFavoriteFromFull() {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (!favorites.includes(currentFullDua)) {
+      favorites.push(currentFullDua);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      alert("✅ تم إضافته إلى المفضلة");
+      // تحديث زر الإضافة في جميع الصفحات
+      updateFavoriteButtons(currentFullDua, true);
+      if (document.getElementById('favorites').classList.contains('active')) {
+        renderFavorites();
+      }
+    } else {
+      alert("⚠️ الدعاء موجود بالفعل في المفضلة");
+    }
+  }
+
+  function toggleFavorite(button) {
+    const duaBox = button.parentElement.parentElement;
+    const duaText = duaBox.querySelector('p').textContent.trim();
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const index = favorites.indexOf(duaText);
+    if (index === -1) {
+      favorites.push(duaText);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      button.innerHTML = "💔 إزالة من المفضلة";
+    } else {
+      favorites.splice(index, 1);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      button.innerHTML = "❤️ إضافة للمفضلة";
+    }
+    if (document.getElementById('favorites').classList.contains('active')) {
+      renderFavorites();
+    }
+  }
+
+  function renderFavorites() {
+    const list = document.getElementById('favoritesList');
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    list.innerHTML = '';
+    if (favorites.length === 0) {
+      list.innerHTML = '<li>لا يوجد أي دعاء محفوظ بعد.</li>';
+      return;
+    }
+    favorites.forEach((duaText) => {
+      const li = document.createElement('li');
+      li.textContent = duaText;
+      li.onclick = () => showFullDua(duaText);
+      list.appendChild(li);
+    });
+  }
+
+  function updateFavoriteButtons(text, isAdded) {
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+      const duaText = btn.closest('.dua-box')?.querySelector('p')?.textContent.trim();
+      if (duaText === text) {
+        btn.innerHTML = isAdded ? "💔 إزالة من المفضلة" : "❤️ إضافة للمفضلة";
+      }
+    });
+  }
+
+  function copyText(button) {
+    const duaBox = button.parentElement.parentElement;
+    const para = duaBox.querySelector('p');
+    const range = document.createRange();
+    range.selectNodeContents(para);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    try {
+      document.execCommand('copy');
+      alert("✅ تم النسخ: " + para.textContent);
+    } catch (err) {
+      alert("❌ فشل النسخ");
+    }
+    selection.removeAllRanges();
+  }
+
+  function shareOnWhatsApp(button) {
+    const duaBox = button.parentElement.parentElement;
+    const para = duaBox.querySelector('p');
+    const message = encodeURIComponent(para.textContent + "\nمن تطبيق الأدعية 💫");
+    const whatsappUrl = `https://wa.me/?text= ${message}`;
+    window.open(whatsappUrl, '_blank');
+  }
+
+  function addCustomDua(sectionId) {
+    const password = document.getElementById(`password${sectionId.charAt(0).toUpperCase() + sectionId.slice(1)}`).value.trim();
+    const duaText = document.getElementById(`customDua${sectionId.charAt(0).toUpperCase() + sectionId.slice(1)}`).value.trim();
+    if (password !== "sudan10##") {
+      alert("❌ كلمة المرور خاطئة");
+      return;
+    }
+    if (!duaText) {
+      alert("❌ الرجاء إدخال دعاء");
+      return;
+    }
+    const container = document.getElementById(sectionId);
+    addDuaToSection(container, duaText);
+    document.getElementById(`customDua${sectionId.charAt(0).toUpperCase() + sectionId.slice(1)}`).value = '';
+    document.getElementById(`password${sectionId.charAt(0).toUpperCase() + sectionId.slice(1)}`).value = '';
+    saveCustomDuas();
+  }
+
+  function addDuaToSection(container, text) {
+    const duaBox = document.createElement('div');
+    duaBox.className = 'dua-box';
+    duaBox.dataset.custom = true;
+    duaBox.innerHTML = `
+      <p onclick="showFullDua('${text}')">${text}</p>
+      <div class="buttons">
+        <button class="favorite-btn" onclick="toggleFavorite(this)">❤️ إضافة للمفضلة</button>
+        <button class="copy-btn" onclick="copyText(this)">📋 نسخ</button>
+        <button class="whatsapp-btn" onclick="shareOnWhatsApp(this)">💬 مشاركة</button>
+      </div>
+    `;
+    container.insertBefore(duaBox, container.querySelector('.add-dua-form'));
+  }
+
+  function loadCustomDuas() {
+    const saved = JSON.parse(localStorage.getItem('customDuas')) || {};
+    Object.entries(saved).forEach(([section, dues]) => {
+      const container = document.getElementById(section);
+      if (container) {
+        dues.forEach(text => {
+          addDuaToSection(container, text);
+        });
+      }
+    });
+  }
+
+  function saveCustomDuas() {
+    const sections = ['morning', 'evening', 'friday', 'azkar'];
+    const data = {};
+    sections.forEach(section => {
+      const container = document.getElementById(section);
+      const boxes = container ? container.querySelectorAll('.dua-box:not([data-default])') : [];
+      data[section] = Array.from(boxes).map(box => box.querySelector('p').textContent);
+    });
+    localStorage.setItem('customDuas', JSON.stringify(data));
+  }
+
+  window.onload = function () {
+    loadCustomDuas();
+    showSection('morning');
+  };
+</script>
+</body>
+</html>
