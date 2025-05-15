@@ -8,7 +8,6 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Tajawal :wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* نفس الاستايل الذي كان عندك */
     body {
       font-family: 'Tajawal', sans-serif;
       margin: 30px;
@@ -179,33 +178,18 @@
   <div id="messageBox" class="alert success" style="display: none;"></div>
 </div>
 
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js "></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js "></script>
-
 <script>
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "your-project-id.firebaseapp.com",
-    databaseURL: "https://your-project-id.firebaseio.com ",
-    projectId: "your-project-id",
-    storageBucket: "your-project-id.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-
   let currentDuas = {};
+  const password = "sudan10##";
 
+  // --- تحميل البيانات ---
   window.onload = function () {
-    firebase.database().ref('duas').on('value', (snapshot) => {
-      currentDuas = snapshot.val() || {};
-      document.getElementById('sectionSelect').onchange = renderDuaList;
-      renderDuaList();
-    });
+    currentDuas = JSON.parse(localStorage.getItem('customDuas')) || {};
+    document.getElementById('sectionSelect').onchange = renderDuaList;
+    renderDuaList();
   };
 
+  // --- عرض قائمة الأدعية ---
   function renderDuaList() {
     const section = document.getElementById('sectionSelect').value;
     const list = document.getElementById('duaList');
@@ -228,11 +212,15 @@
     });
   }
 
+  // --- عند تغيير القسم ---
+  document.getElementById('sectionSelect').onchange = renderDuaList;
+
+  // --- إضافة دعاء جديد ---
   function addCustomDua() {
     const enteredPass = document.getElementById('adminPassword').value.trim();
     const newDua = document.getElementById('newDuaInput').value.trim();
 
-    if (enteredPass !== "sudan10##") {
+    if (enteredPass !== password) {
       showMessage("❌ كلمة المرور خاطئة", "danger");
       return;
     }
@@ -251,12 +239,14 @@
     renderDuaList();
   }
 
+  // --- تحديث الدعاء ---
   function updateDua(index, newText) {
     const section = document.getElementById('sectionSelect').value;
     currentDuas[section][index] = newText;
-    showMessage("✏️ تم التعديل مؤقتًا", "success");
+    showMessage("✏️ تم تعديل النص مؤقتًا", "success");
   }
 
+  // --- حذف دعاء ---
   function deleteDua(index) {
     const section = document.getElementById('sectionSelect').value;
     if (confirm("هل تريد حذف هذا الدعاء؟")) {
@@ -267,39 +257,53 @@
     }
   }
 
+  // --- حفظ كل الأدعية ---
   function saveAllDuas() {
-    firebase.database().ref('duas').set(currentDuas);
-    showMessage("✅ تم الحفظ في السحابة", "success");
+    localStorage.setItem('customDuas', JSON.stringify(currentDuas));
+    showMessage("✅ تم الحفظ في الذاكرة", "success");
   }
 
+  // --- تعديل النص المتحرك ---
   function updateMovingText() {
     const newText = document.getElementById('movingText').value.trim();
     if (!newText) {
       alert("❌ لا يمكن ترك النص فارغًا");
       return;
     }
-    firebase.database().ref('settings/movingText').set(newText);
+    localStorage.setItem('movingText', newText);
     showMessage("✅ تم تحديث النص المتحرك", "success");
   }
 
+  // --- تغيير لون الخلفية ---
   function changeBackgroundColor() {
     const bgColor = document.getElementById('bgColor').value;
-    firebase.database().ref('settings/bgColor').set(bgColor);
+    localStorage.setItem('bgColor', bgColor);
     showMessage("✅ تم تغيير لون الخلفية", "success");
+    syncWithMainPage();
   }
 
+  // --- تغيير لون الأزرار ---
   function changeButtonColor() {
     const btnColor = document.getElementById('btnColor').value;
-    firebase.database().ref('settings/btnColor').set(btnColor);
+    localStorage.setItem('btnColor', btnColor);
     showMessage("✅ تم تغيير لون الأزرار", "success");
+    syncWithMainPage();
   }
 
+  // --- تغيير زوايا الشريط العلوي ---
   function changeNavbarStyle() {
     const radius = document.getElementById('navbarRadius').value;
-    firebase.database().ref('settings/navbarRadius').set(radius);
+    localStorage.setItem('navbarRadius', radius);
     showMessage("✅ تم تغيير زوايا الشريط العلوي", "success");
+    syncWithMainPage();
   }
 
+  // --- مزامنة الإعدادات مع الصفحة الرئيسية ---
+  function syncWithMainPage() {
+    window.open('../index.html', '_blank');
+  }
+
+  // --- رسالة نجاح أو خطأ ---
   function showMessage(text, type) {
     const msgBox = document.getElementById('messageBox');
     msgBox.className = `alert ${type}`;
