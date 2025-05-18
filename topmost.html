@@ -1,88 +1,247 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أسماء بألوان مختلفة</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            font-family: 'Tajawal', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <title>تصميم_محمد-حيدر إلكترونية</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body {
-            background-image: url('https://i.ibb.co/MyCKDwxB/Picsart-25-05-18-17-21-29-218.jpg ');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-        }
+  <!-- Normalize CSS -->
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      font-size: 16px;
+    }
+    body {
+      min-height: 100vh;
+    }
+  </style>
 
-        .name {
-            position: absolute;
-            white-space: nowrap;
-            cursor: text;
-            padding: 5px 10px;
-            border-radius: 4px;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-            max-width: 90%;
-            font-size: clamp(16px, 4vw, 28px);
-        }
+  <!-- خط عربي جميل -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal :wght@500&display=swap" rel="stylesheet">
 
-        .name:focus {
-            outline: none;
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-    </style>
+  <style>
+    body {
+      text-align: center;
+      font-family: 'Tajawal', sans-serif;
+      padding-top: 50px;
+      margin: 0;
+      background: linear-gradient(-45deg, #a18cd1, #fbc2eb, #a6c0fe, #f6d365);
+      background-size: 600% 600%;
+      animation: gradientBG 20s ease infinite;
+    }
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal :wght@400;700&display=swap" rel="stylesheet">
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .tasbih-container {
+      position: relative;
+      display: inline-block;
+      background: transparent;
+    }
+
+    .tasbih-image {
+      width: 90vw;
+      max-width: 350px;
+      height: auto;
+      border-radius: 15px;
+      display: block;
+    }
+
+    .counter-display {
+      position: absolute;
+      top: 86px;
+      left: 47%;
+      transform: translateX(-50%);
+      font-size: 48px;
+      font-weight: bold;
+      text-align: center;
+      color: white;
+      z-index: 2;
+      background-color: transparent;
+      padding: 0;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.6), 0 0 10px rgba(255, 255, 255, 0.4);
+      }
+      to {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.6);
+      }
+    }
+
+    .btn-large {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 72%;
+      left: 46%;
+      transform: translate(-50%, -50%);
+      background-color: black;
+      font-size: 24px;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3), 0 0 0 4px #a18cd1; /* الحلقة البنفسجية */
+      z-index: 999;
+      transition: all 0.2s ease-in-out;
+      animation: pulse 2s infinite;
+    }
+
+    .btn-large:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4), 0 0 0 5px #a18cd1;
+    }
+
+    .btn-large:active {
+      transform: translate(-50%, -50%) scale(0.95);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 0 0 5px #a18cd1;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3), 0 0 0 4px #a18cd1;
+      }
+      50% {
+        box-shadow: 0 8px 16px rgba(255,255,255,0.5), 0 0 0 5px #a18cd1;
+      }
+    }
+
+    .btn-small {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      top: 54%;
+      left: 68%;
+      transform: translate(-50%, -50%);
+      background-color: red;
+      font-size: 18px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 2;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 8px rgba(255, 0, 0, 0.4), 0 0 0 3px #a18cd1;
+    }
+
+    .btn-small:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 6px 12px rgba(255, 0, 0, 0.6), 0 0 0 4px #a18cd1;
+    }
+
+    .btn-small:active {
+      transform: translate(-50%, -50%) scale(0.9);
+      box-shadow: 0 2px 6px rgba(255, 0, 0, 0.8), 0 0 0 4px #a18cd1;
+    }
+
+    .static-text {
+      margin: 30px auto;
+      max-width: 90%;
+      padding: 20px 30px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-radius: 15px;
+      font-size: 22px;
+      color: white;
+      font-weight: bold;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .moving-text {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      background: #e8f5e9;
+      padding: 10px 0;
+    }
+
+    .marquee {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 20s linear infinite;
+      font-size: 18px;
+      color: #2e7d32;
+      font-weight: bold;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
+    }
+
+    @media (max-width: 600px) {
+      .counter-display {
+        font-size: 48px;
+      }
+
+      .btn-large {
+        width: 120px;
+        height: 120px;
+      }
+
+      .btn-small {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- يمكنك التحكم بكل اسم على حدة -->
-    <div class="name" contenteditable="true"
-         style="top: 8%; left: 6%; color: #ffffff; font-weight: 700;">
-        الاسم الأول
-    </div>
+  <div class="tasbih-container">
+    <!-- الصورة -->
+    <img src="https://i.top4top.io/p_3425udttm0.png " alt="سبحة" class="tasbih-image">
 
-    <div class="name" contenteditable="true"
-         style="top: 20%; left: 6%; color: #ffffff; font-weight: 400;">
-        الاسم الثاني
-    </div>
+    <!-- شاشة العدد بدون خلفية -->
+    <div id="counter" class="counter-display">0</div>
 
-    <div class="name" contenteditable="true"
-         style="top: 30%; left: 6%; color: #ffffff; font-weight: 700;">
-        الاسم الثالث
-    </div>
+    <!-- زر التسبيح الكبير -->
+    <button class="btn-large" onclick="increment()">+</button>
 
-    <div class="name" contenteditable="true"
-         style="top: 40%; left: 6%; color: #ffffff; font-weight: 400;">
-        الاسم الرابع
-    </div>
+    <!-- زر إعادة التعيين -->
+    <button class="btn-small" onclick="reset()">⟳</button>
+  </div>
 
-    <div class="name" contenteditable="true"
-         style="top: 50%; left: 6%; color: #ffffff; font-weight: 700;">
-        الاسم الخامس
-    </div>
+  <!-- نص ثابت -->
+  <div class="static-text">
+    إلهم صلي وسلم على سيدنا محمد عليه أفضل الصلاة والسلام
+  </div>
 
-    <div class="name" contenteditable="true"
-         style="top: 60%; left: 6%; color: #ffffff; font-weight: 400;">
-        الاسم السادس
-    </div>
+  <!-- نص متحرك -->
+  <div class="moving-text">
+    <div class="marquee">🔰 تصميم _ سوسان_ارسال لي من تحيب- 🔰</div>
+  </div>
 
-    <div class="name" contenteditable="true"
-         style="top: 70%; left: 6%; color: #ffffff; font-weight: 700;">
-        الاسم السابع
-    </div>
+  <script>
+    // استرجاع العدد من localStorage إن وُجد
+    let count = parseInt(localStorage.getItem('tasbihCount')) || 0;
+    document.getElementById('counter').textContent = count;
 
-    <div class="name" contenteditable="true"
-         style="top: 80%; left: 6%; color: #ffffff; font-weight: 400;">
-        الاسم الثامن
-    </div>
+    function increment() {
+      count++;
+      document.getElementById('counter').textContent = count;
+      localStorage.setItem('tasbihCount', count);
+    }
+
+    function reset() {
+      count = 0;
+      document.getElementById('counter').textContent = count;
+      localStorage.removeItem('tasbihCount');
+    }
+  </script>
 
 </body>
 </html>
