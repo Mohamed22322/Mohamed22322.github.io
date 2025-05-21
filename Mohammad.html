@@ -24,6 +24,47 @@
   <link href="https://fonts.googleapis.com/css2?family=Tajawal :wght@500&display=swap" rel="stylesheet">
 
   <style>
+.btn-doa {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 65%;
+  left: 86%; /* يمكنك تعديل القيمة لوضع الزر في مكان مناسب */
+  transform: translate(-50%, -50%);
+  background-color: #4caf50; /* لون أخضر */
+  font-size: 20px;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3), 0 0 0 4px #a18cd1;
+  z-index: 999;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  animation: pulse-green 2s infinite;
+}
+
+.btn-doa:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4), 0 0 0 5px #a18cd1;
+}
+
+.btn-doa:active {
+  transform: translate(-50%, -50%) scale(0.95);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 0 0 5px #a18cd1;
+}
+
+@keyframes pulse-green {
+  0%, 100% {
+    box-shadow: 0 6px 12px rgba(0, 150, 0, 0.3), 0 0 0 4px #a18cd1;
+  }
+  50% {
+    box-shadow: 0 8px 16px rgba(0, 255, 0, 0.5), 0 0 0 5px #a18cd1;
+  }
+}
     body {
       text-align: center;
       font-family: 'Tajawal', sans-serif;
@@ -200,6 +241,10 @@
   </style>
 </head>
 <body>
+<!-- زر الدعاء -->
+<a href="https://mohamed22322.github.io/ " target="_blank" class="btn-doa">
+  دعاء
+</a>
 
   <div class="tasbih-container">
     <!-- الصورة -->
