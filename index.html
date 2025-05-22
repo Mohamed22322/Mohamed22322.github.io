@@ -237,11 +237,9 @@
   </div>
   <!-- شريط التنقل -->
   <div class="navbar">
-
-        <!-- زر التسبيح -->
-        <a href="https://mohamed22322.github.io/Mohammad.html ">
-            <button>التسبيح</button>
-        </a>
+<a href="https://mohamed22322.github.io/Mohammad.html ">
+      <button>التسبيح</button>
+    </a>
     <button onclick="showSection('morning')"><i class="fas fa-sun"></i> دعاء الصباح</button>
     <button onclick="showSection('evening')"><i class="fas fa-moon"></i> دعاء المساء</button>
     <button onclick="showSection('friday')"><i class="fas fa-mosque"></i> دعاء الجمعة</button>
@@ -560,7 +558,11 @@
         <marquee behavior="scroll" direction="right" scrollamount="6">
           ❤️ ${savedMovingText} ❤️
         </marquee>
-      `
+      `;
+    }
+  }
+</script>
+
 <!-- عرض كامل للدعاء -->
 <div id="fullDuaView" class="full-dua-view">
   <div class="full-dua-content">
@@ -823,7 +825,7 @@
         backgroundColor: "#e74c3c"
       }
     },
-    initiallyVisible: false // لا يظهر النموذج تلقائيًا
+    initiallyVisible: false
   });
 </script>
 </body>
