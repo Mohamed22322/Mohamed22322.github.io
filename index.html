@@ -234,19 +234,16 @@
     <marquee behavior="scroll" direction="right" scrollamount="6">
       ❤️ بسم الله الرحمن الرحيم ❤️
     </marquee>
-  </div>
   <!-- شريط التنقل -->
   <div class="navbar">
-
-        <!-- زر التسبيح -->
-        <a href="https://mohamed22322.github.io/Mohammad.html ">
-            <button>التسبيح</button>
-        </a>
     <button onclick="showSection('morning')"><i class="fas fa-sun"></i> دعاء الصباح</button>
     <button onclick="showSection('evening')"><i class="fas fa-moon"></i> دعاء المساء</button>
     <button onclick="showSection('friday')"><i class="fas fa-mosque"></i> دعاء الجمعة</button>
     <button onclick="showSection('favorites')"><i class="fas fa-heart"></i> المفضلة</button>
     <button onclick="showSection('azkar')"><i class="fas fa-book-open"></i> أذكار الصباح والمساء</button>
+<a href="https://mohamed22322.github.io/Mohammad.html ">
+      <button>التسبيح</button>
+    </a>
   </div>
   <!-- الحاوية الرئيسية -->
   <div class="container">
@@ -560,7 +557,11 @@
         <marquee behavior="scroll" direction="right" scrollamount="6">
           ❤️ ${savedMovingText} ❤️
         </marquee>
-      `
+      `;
+    }
+  }
+</script>
+
 <!-- عرض كامل للدعاء -->
 <div id="fullDuaView" class="full-dua-view">
   <div class="full-dua-content">
@@ -788,43 +789,46 @@
     showSection('morning');
   };
 </script>
-<!-- نموذج الاتصال العائم -->
-<script src="https://formspree.io/js/formbutton-v1.min.js " defer></script>
-<script>
-  window.formbutton = window.formbutton || function () { (formbutton.q = formbutton.q || []).push(arguments); };
+<!-- رابط سكريبت Formspree -->
+  <script src="https://formspree.io/js/formbutton-v1.min.js " defer></script>
 
-  formbutton("create", {
-    action: "https://formspree.io/f/mbloelnd ", // 📌 استبدل mbloelnd بـ Form ID الخاص بك
-    title: "كيف يمكننا مساعدتك؟",
-    labels: {
-      submit: "إرسال"
-    },
-    fields: [
-      {
-        type: "email",
-        label: "بريدك الإلكتروني",
-        name: "email",
-        required: true,
-        placeholder: "بريدك@email.com"
+  <script>
+    /* обязательный код для запуска формы */
+    window.formbutton = window.formbutton || function () { (formbutton.q = formbutton.q || []).push(arguments); };
+
+    /* إعدادات النموذج - يمكنك تعديله حسب رغبتك */
+    formbutton("create", {
+      action: "https://formspree.io/f/mbloelnd ", // 📌 استبدل mbloelnd بـ Form ID الخاص بك
+      title: "كيف يمكننا مساعدتك؟",
+      labels: {
+        submit: "إرسال"
       },
-      {
-        type: "textarea",
-        label: "رسالتك",
-        name: "message",
-        placeholder: "اكتب رسالتك هنا..."
+      fields: [
+        {
+          type: "email",
+          label: "بريدك الإلكتروني",
+          name: "email",
+          required: true,
+          placeholder: "بريدك@email.com"
+        },
+        {
+          type: "textarea",
+          label: "رسالتك",
+          name: "message",
+          placeholder: "اكتب رسالتك هنا..."
+        },
+        { type: "submit" }
+      ],
+      styles: {
+        title: {
+          backgroundColor: "#007BFF"
+        },
+        button: {
+          backgroundColor: "#007BFF"
+        }
       },
-      { type: "submit" }
-    ],
-    styles: {
-      title: {
-        backgroundColor: "#e74c3c"
-      },
-      button: {
-        backgroundColor: "#e74c3c"
-      }
-    },
-    initiallyVisible: false // لا يظهر النموذج تلقائيًا
-  });
-</script>
+      initiallyVisible: false // إظهار النموذج مباشرة أو لا
+    });
+  </script>
 </body>
 </html>
