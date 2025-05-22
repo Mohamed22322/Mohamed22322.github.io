@@ -787,5 +787,46 @@
     showSection('morning');
   };
 </script>
+  <!-- رابط سكريبت Formspree -->
+  <script src="https://formspree.io/js/formbutton-v1.min.js " defer></script>
+
+  <script>
+    /* обязательный код для запуска формы */
+    window.formbutton = window.formbutton || function () { (formbutton.q = formbutton.q || []).push(arguments); };
+
+    /* إعدادات النموذج - يمكنك تعديله حسب رغبتك */
+    formbutton("create", {
+      action: "https://formspree.io/f/mbloelnd ", // 📌 استبدل mbloelnd بـ Form ID الخاص بك
+      title: "كيف يمكننا مساعدتك؟",
+      labels: {
+        submit: "إرسال"
+      },
+      fields: [
+        {
+          type: "email",
+          label: "بريدك الإلكتروني",
+          name: "email",
+          required: true,
+          placeholder: "بريدك@email.com"
+        },
+        {
+          type: "textarea",
+          label: "رسالتك",
+          name: "message",
+          placeholder: "اكتب رسالتك هنا..."
+        },
+        { type: "submit" }
+      ],
+      styles: {
+        title: {
+          backgroundColor: "#007BFF"
+        },
+        button: {
+          backgroundColor: "#007BFF"
+        }
+      },
+      initiallyVisible: false // إظهار النموذج مباشرة أو لا
+    });
+  </script>
 </body>
 </html>
