@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <title>لي قرات النص</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- خط عربي جميل -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal :wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Reset */
+        @charset "UTF-8";
+
         * {
             margin: 0;
             padding: 0;
@@ -13,12 +16,12 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Tajawal', sans-serif;
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: #fff;
             direction: rtl;
             min-height: 100vh;
-            transition: background 0.5s ease;
+            line-height: 1.8;
         }
 
         .container {
@@ -29,7 +32,6 @@
             backdrop-filter: blur(10px);
             border-radius: 15px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1s ease-in-out;
         }
 
         h1 {
@@ -57,7 +59,6 @@
             transform: translateY(-5px);
         }
 
-        /* نمط الصفحة الكاملة للنص */
         .full-article {
             display: none;
             position: fixed;
@@ -70,17 +71,7 @@
             z-index: 9999;
             overflow-y: auto;
             padding: 60px 40px;
-            animation: slideIn 0.5s ease;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            font-size: 18px;
         }
 
         .full-article h2 {
@@ -90,11 +81,22 @@
             margin-bottom: 20px;
         }
 
-        .full-article p {
+        .formatted-text {
+            white-space: pre-line;
             line-height: 2;
+            text-align: right;
+            direction: rtl;
+            text-indent: 2em;
             font-size: 18px;
-            text-align: justify;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+        }
+
+        blockquote {
+            border-right: 4px solid #007bff;
+            padding-right: 15px;
+            margin: 20px 0;
+            color: #555;
+            font-style: italic;
         }
 
         .close-btn {
@@ -136,7 +138,6 @@
             transform: scale(1.05);
         }
 
-        /* تنسيق لشاشة الهاتف */
         @media (max-width: 600px) {
             .container {
                 padding: 20px 10px;
@@ -155,8 +156,9 @@
                 font-size: 26px;
             }
 
-            .full-article p {
+            .formatted-text {
                 font-size: 16px;
+                text-indent: 1.5em;
             }
         }
     </style>
@@ -181,120 +183,13 @@
 
 <div id="article1" class="full-article">
     <h2>النص الأول</h2>
-    <p>
-    
+    <pre class="formatted-text">
+كان يا مكان في قديم الزمان،
+    هناك كتاب مليء بالحكمة والمعاني الجميلة.
+        ومن خلاله استطاع القارئ أن يجد الإلهام ويغير مسار حياته.
 
-<p>سجود السهو له ثلاث حالات:
-الزيادة/النقص/الشك<p\>
-
- <p>⇦في حالة الزيادة⇦اسجد سجدتي السهو بعد التسليم.
-⇦في حالة النقص⇦اسجد سجدتي السهو قبل التسليم.
-⇦في حالة الشك⇦إبن على الأقل و اسجد سجدتي السهو قبل التسليم<p\>
-
-وانتبه!!
-سجدتي السهو لا تجبران ركن من أركان الصلاة بل تجبر الواجب والسُنة فقط.
-
-بمعنى لو نسيت ركن ..
-وجب عليك أن تأتي به أوﻻً
-و بعدها تسجد سجود السهو في آخر صلاتك.
-
-ولو نسيت واجب أو سُنة اسجد للسهو.
-
-الصلاة لها 17 ركن
- و 8 واجبات 
-ولها سُنن.. فما هيَ
-
- أركان الصلاة : وهي17
- سبعه  عشر ركناً :
- 1.الطهاره اى الوضوء
-2.استقبال القبلة
-3.دخول الوقت
-➊ القيام مع القدرة 
-➋ وتكبيرة الإحرام 
-➌ وقراءة الفاتحة 
-➍ والركوع 
-➎ والإعتدال بعد الركوع 
-➏ والسجود على الأعضاء السبعة 
-➐ والرفع منه 
-➑ والجلسة بين السجدتين 
-➒ والطمأنينة في جميع الأفعال 
-➓ والترتيب بين الأركان 
-11- والتشهد الأخير 
-12- والجلوس له
-13- والصلاة على النبي ﷺ
-14- والتسليمتان  
-
-واجبات الصلاة : وهي 8 ثمانية :
- 
-➊ جميع التكبيرات غير تكبيرة اﻹحرام 
-➋ وقول : سمع الله لمن حمده للإمام والمنفرد 
-➌ وقول : ربنا ولك الحمد للكل 
-➍ وقول : سبحان ربي العظيم في الركوع 
-➎ وقول : سبحان ربي الأعلى  في السجود 
-➏ وقول : ربي أغفر لي ، بين السجدتين 
-➐ والتشهد الأول 
-➑ والجلوس له 
-
-أمثلة
-
-1) لو كنت أُصلى ونسيت الركوع فى الركعة الأولى أو أي ركعة أو نسيت سجدة مثلًا ..ماذا أفعل
-
-- الركوع أو السجود: ركن من أركان الصلاة.. 
-فعند السهو أو النسيان أعوض هذا الركن أو السجدة..
-بمعنى سأعتبر الركعة التي نسيت فيها الركوع ملغية وأبدأ التي بعدها وأعتبرها الركعة الأولى ، وأكمل صلاتي وعند اﻹنتهاء أقول التشهد الأخير وقبل التسليم اسجد سجدتي السهو ثم أُسلم.
-
-2) لو كنت أُصلي ونسيت قراءة سورة بعد الفاتحة .. ماذا أفعل
-
-- السورة التي بعد الفاتحة سُنة وليست ركن وفيها خلاف هل لها سجود سهو أم لا ..والراجح ليس لها.
-
-3) لو كنت أُصلي و زدت ركعة، بمعنى مثلًا صليت المغرب 4 ركعات.
-
-- بعد قول التشهد الأخير وبعد تسليمي من الصلاة أسجد سجدتي السهو وأُسلم مرة أخرى من الصلاة.
-
-4)مثلاً لو صليت المغرب وﻻ أتذكر هل صليته ركعتين أو 3 ركعات ..ماذا أفعل؟
-
--لو لم يترجح لك شيء 
- نأخذ باﻹحتمال الأقل وهو أنك صليتها ركعتين وليست ثلاث
- ثم تأتي بالركعة الثالثة + سجدتي السهو قبل التسليم.
-
-5) لو كنت أُصلي ونسيت الركوع وتذكرت أنني نسيت فهل أسجد للسهو ام ماذا أفعل
-
-- لا تسجد للسهو لأن الركعة بهذا باطلة أُلغيت ..وليست محسوبة ، إذن أضع في إعتباري كأنني لم أصليها وأعيد الركعة مرة ثانية وأسير بترتيبي في الصلاة وأجبر بسجدتين للسهو في آخر الصلاة.
-
-وماذا أقول في سجدتي السهو
-
-- سبحان ربي الأعلى 3 مرات مثل السجود العادى.
-
-إذن الذي ينسى ركوع أو سجود أو أى ركن أو قراءة الفاتحة وفى الآخر يسجد للسهو صلاته غير صحيحة ما لم يأتي به.
-
-والذي يتعمد زيادة ركن صلاته باطلة.
-
-الفاتحة ركن في الصلاة ..
-بمعنى لو قرأتها خطأ صلاتك غير صحيحة.
-
-اﻹطمئنان ركن في الصلاة ..
-بمعنى لو صليت بسرعة صلاتك غير صحيحة!!.
-
-رفع الأيدي بالتكبير له أربعة مواضع فقط:
-
-1) أثناء تكبيرة الإحرام.
-2) وعند اﻹنحناء للركوع.
-3) وعند الرفع من الركوع
-(أثناء قولك سمع الله لمن حمده).
-4) بعد التشهد الأوسط..
-(يعنى أثناء قيامك للركعة الثالثة).
-وغير هذه المواضع لا ترفع يديك.
-
-ﺳﺌﻞ ﻓﻀﻴﻠﺔ ﺍﻟﺸﻴﺦ ﺍﺑﻦ ﻋﺜﻴﻤﻴﻦ ﺭﺣﻤﻪ ﺍﻟﻠﻪ :
-
-ﺇﺫﺍ ﺗﺮﻙ ﺍﻹﻧﺴﺎﻥ ﺗﻜﺒﻴﺮﺓ ﺍﻹﺣﺮﺍﻡ ﺳﻬﻮﺍً ، ﻓﻤﺎ ﺍﻟﺤﻜﻢ 
-
-ﻓﺄﺟﺎﺏ ﺭﺣﻤﻪ ﺍﻟﻠﻪ ﺑﻘﻮﻟﻪ
-
-( ﺇﺫﺍ ﺗﺮﻙ ﺍﻟﻤﺼﻠﻲ ﺗﻜﺒﻴﺮﺓ ﺍﻹﺣﺮﺍﻡ ﺳﻬﻮﺍً ﺃﻭ ﻋﻤﺪﺍً ، ﻟﻢ ﺗﻨﻌﻘﺪ ﺻﻼﺗﻪ ، ﻷﻥ ﺍﻟﺼﻼﺓ ﻻ ﺗﻨﻌﻘﺪ ﺇﻻ ﺑﺘﻜﺒﻴﺮﺓ ﺍﻹﺣﺮﺍﻡ ، ﻓﻠﻮ ﻓﺮضنا ﺃﻥ ﺷﺨﺼﺎً ﻭﻗﻒ ﻓﻲ ﺍﻟﺼﻒ ، ﺛﻢ ﺷﺮﻉ ﻓﻲ اﻹﺳﺘﻔﺘﺎﺡ ، ﻭﻗﺮﺃ ﺍﻟﻔﺎﺗﺤﺔ ، ﻭﺍﺳﺘﻤﺮ ، ﻓﺈﻧﻨﺎ ﻧﻘﻮﻝ : ﺇﻥ ﺻﻼﺗﻪ ﻟﻢ ﺗﻨﻌﻘﺪ ﺃﺻﻼ ، ﻭﻟﻮ ﺻﻠﻰ ﻛﻞ ﺍﻟﺮﻛﻌﺎﺕ )
-
-انشروها بارك الله فيكم لعلكم بذلك تصلحون أخطاء المصلين فتكون في صحيفتكم  يوم القيامة ،،، ان شاء الله تعالى 
- يقول صل الله عليه وسلم: " من يُرِد الله به خيراً يُفقههُ في الدين ،،،    </p>
+            هذا النص مجرد مثال يمكنك استبداله بنص حقيقي لاحقاً.
+    </pre>
     <div class="article-actions">
         <button class="copy-btn" onclick="copyText('article1')">نسخ النص</button>
         <button class="whatsapp-btn" onclick="shareWhatsApp('article1')">مشاركة عبر واتساب</button>
@@ -304,10 +199,12 @@
 
 <div id="article2" class="full-article">
     <h2>النص الثاني</h2>
-    <p>
-        كانت السماء مشرقة والنور يملأ الأرجاء، والقلب مليء بالأمل.
-        في تلك اللحظة قرأت كلمات لطالما حفظتها في ذاكرتك، كلمات تحمل معنىً عميقاً.
-    </p>
+    <pre class="formatted-text">
+كانت السماء مشرقة والنور يملأ الأرجاء،
+والقلب مليء بالأمل.
+في تلك اللحظة قرأت كلمات لطالما حفظتها في ذاكرتك،
+كلمات تحمل معنىً عميقاً.
+    </pre>
     <div class="article-actions">
         <button class="copy-btn" onclick="copyText('article2')">نسخ النص</button>
         <button class="whatsapp-btn" onclick="shareWhatsApp('article2')">مشاركة عبر واتساب</button>
@@ -317,10 +214,11 @@
 
 <div id="article3" class="full-article">
     <h2>النص الثالث</h2>
-    <p>
-        الحياة ليست فقط ما نراه أمامنا، بل هي أيضاً ما نشعر به داخلنا.
-        وهذا النص مثل مرآة تعكس مشاعر القارئ وتوقه إلى المعنى الحقيقي للحياة.
-    </p>
+    <pre class="formatted-text">
+الحياة ليست فقط ما نراه أمامنا،
+بل هي أيضاً ما نشعر به داخلنا.
+وهذا النص مثل مرآة تعكس مشاعر القارئ وتوقه إلى المعنى الحقيقي للحياة.
+    </pre>
     <div class="article-actions">
         <button class="copy-btn" onclick="copyText('article3')">نسخ النص</button>
         <button class="whatsapp-btn" onclick="shareWhatsApp('article3')">مشاركة عبر واتساب</button>
@@ -330,10 +228,11 @@
 
 <div id="article4" class="full-article">
     <h2>النص الرابع</h2>
-    <p>
-        القراءة نافذة العالم، وبها نسافر دون أن نتحرك، ونعيش حياة الآخرين بكل صدق.
-        هنا تبدأ الرحلة الحقيقية بين السطور والكلمات.
-    </p>
+    <pre class="formatted-text">
+القراءة نافذة العالم، وبها نسافر دون أن نتحرك،
+ونعيش حياة الآخرين بكل صدق.
+هنا تبدأ الرحلة الحقيقية بين السطور والكلمات.
+    </pre>
     <div class="article-actions">
         <button class="copy-btn" onclick="copyText('article4')">نسخ النص</button>
         <button class="whatsapp-btn" onclick="shareWhatsApp('article4')">مشاركة عبر واتساب</button>
@@ -343,10 +242,11 @@
 
 <div id="article5" class="full-article">
     <h2>النص الخامس</h2>
-    <p>
-        عندما تقرأ نصاً مؤثراً، فإنك لا تقرأ الكلمات فقط، بل تقرأ المشاعر والتجارب.
-        وكل حرف يحمل قصة جديدة تلهمك لتغيير شيء في نفسك.
-    </p>
+    <pre class="formatted-text">
+عندما تقرأ نصاً مؤثراً، فإنك لا تقرأ الكلمات فقط،
+بل تقرأ المشاعر والتجارب.
+وكل حرف يحمل قصة جديدة تلهمك لتغيير شيء في نفسك.
+    </pre>
     <div class="article-actions">
         <button class="copy-btn" onclick="copyText('article5')">نسخ النص</button>
         <button class="whatsapp-btn" onclick="shareWhatsApp('article5')">مشاركة عبر واتساب</button>
@@ -356,10 +256,10 @@
 
 <div id="article6" class="full-article">
     <h2>النص السادس</h2>
-    <p>
-        وأخيراً، بعد أن أنهيت القراءة، شعرت بأنك لم تعد الشخص ذاته.
-        لأن بعض النصوص تغيرك من الداخل، وتفتح عينيك على أمور لم تكن ترى لها ظلاً.
-    </p>
+    <pre class="formatted-text">
+وأخيراً، بعد أن أنهيت القراءة، شعرت بأنك لم تعد الشخص ذاته.
+لأن بعض النصوص تغيرك من الداخل، وتفتح عينيك على أمور لم تكن ترى لها ظلاً.
+    </pre>
     <div class="article-actions">
         <button class="copy-btn" onclick="copyText('article6')">نسخ النص</button>
         <button class="whatsapp-btn" onclick="shareWhatsApp('article6')">مشاركة عبر واتساب</button>
@@ -379,7 +279,7 @@
     }
 
     function copyText(id) {
-        const text = document.getElementById(id).querySelector('p').innerText;
+        const text = document.getElementById(id).querySelector('.formatted-text').innerText;
         navigator.clipboard.writeText(text).then(() => {
             alert("تم نسخ النص بنجاح!");
         }).catch(() => {
@@ -388,7 +288,7 @@
     }
 
     function shareWhatsApp(id) {
-        const text = encodeURIComponent(document.getElementById(id).querySelector('p').innerText);
+        const text = encodeURIComponent(document.getElementById(id).querySelector('.formatted-text').innerText);
         const url = `https://api.whatsapp.com/send?text= ${text}`;
         window.open(url, '_blank');
     }
