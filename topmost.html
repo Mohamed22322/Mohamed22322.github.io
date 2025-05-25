@@ -1,173 +1,87 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="left">
 <head>
-  <meta charset="UTF-8">
-  <title>مرحبا، أنا محمد حيدر</title>
-  <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <title>أنواع خطوط</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('http://192.168.1.2:8080/Picsart_25-05-18_17-21-26-648.jpg ');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Tajawal', sans-serif;
+            position: relative;
+        }
 
-    body {
-      overflow: hidden;
-      background: #0e0e10;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-    }
+        .name {
+            position: absolute;
+            white-space: nowrap;
+            cursor: text;
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: white;
+          font-weight: 700;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6); 
+          line-height: 1; /* 👈 تغليظ المسافة بين الأسطر */
+        }
 
-    /* نص كبير ومنحوت */
-    .text-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 4em;
-      font-weight: bold;
-      text-align: center;
-      text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081, 0 0 30px #ff4081;
-      letter-spacing: 2px;
-      user-select: none;
-    }
+        .name:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+    </style>
 
-    /* تصميم الكرة الساقطة */
-    .ball {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background-color: #ff4081;
-      border-radius: 50%;
-      pointer-events: none;
-      box-shadow: 0 0 10px #ff4081;
-    }
-
-    /* شكل القلب باستخدام CSS */
-    .heart {
-      position: absolute;
-      width: 0;
-      height: 0;
-      opacity: 0;
-      animation: growHeart 1s forwards, fadeOut 2s ease-out 1s forwards;
-    }
-
-    @keyframes growHeart {
-      to {
-        width: 20px;
-        height: 20px;
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-      }
-    }
-
-    .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: #ff4081;
-      border-radius: 50%;
-    }
-
-    .heart::before {
-      top: 0;
-      left: 10px;
-    }
-
-    .heart::after {
-      top: 0;
-      right: 10px;
-    }
-
-    .heart span {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: #ff4081;
-      transform: rotate(45deg);
-      top: 10px;
-      left: 0;
-    }
-  </style>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal :wght@400;700&family=Noto+Kufi+Arabic&family=Amiri&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="text-container" id="text">مرحبا، أنا محمد حيدر</div>
+    <!-- الاسم الأول - خط Tajawal -->
+    <div class="name" contenteditable="true"
+         style="top: 32%; left: 25%; transform: translate(-50%, -50%); font-family: 'Noto Kufi Arabic', sans-serif; font-size: 15px;">
+        20020156789
+    </div>
 
-<script>
-  // ألوان عشوائية للكور والقلوب
-  const colors = ['#ff4081', '#fbc02d', '#4caf50', '#2196f3', '#9c27b0'];
+    <!-- الاسم الثاني - خط Noto Kufi Arabic -->
+    <div class="name" contenteditable="true"
+         style="top: 36%; left: 25%; transform: translate(-50%, -50%); font-family: 'Noto Kufi Arabic', sans-serif; font-size: 15px;">
+        08-May
+    </div>
 
-  function createBall() {
-    const ball = document.createElement('div');
-    ball.classList.add('ball');
-    ball.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    ball.style.left = Math.random() * window.innerWidth + 'px';
-    ball.style.top = -30 + 'px';
-    document.body.appendChild(ball);
+    <!-- الاسم الثالث - خط Amiri -->
+    <div class="name" contenteditable="true"
+         style="top: 52%; left: 25%; transform: translate(-50%, -50%); font-family: 'Noto Kufi Arabic', serif; font-size: 15px;">
+        الاسم الثالث
+    </div>
+    
 
-    let size = 10;
-    let y = 0;
-    let speed = 2 + Math.random() * 3;
-    let gravity = 0.05;
-    let bounceFactor = 0.6;
+    <div class="name" contenteditable="true"
+         style="top: 62%; left: 25%; transform: translate(-50%, -50%); font-family: 'Noto Kufi Arabic', serif; font-size: 15px;">
+        الاسم الثالث
+    </div> 
+     
 
-    function animate() {
-      y += speed;
-      speed += gravity;
-      let bottom = window.innerHeight - size;
+    <div class="name" contenteditable="true"
+         style="top: 72%; left: 25%; transform: translate(-50%, -50%); font-family: 'Noto Kufi Arabic', serif; font-size: 15px;">
+        الاسم الثالث
+    </div>  
 
-      if (y > bottom) {
-        y = bottom;
-        speed *= -bounceFactor;
-        size *= 0.9;
+    <div class="name" contenteditable="true"
+         style="top: 82%; left: 25%; transform: translate(-50%, -50%); font-family: 'Noto Kufi Arabic', serif; font-size: 15px;">
+        الاسم الثالث
+    </div>
 
-        if (size < 3) {
-          // بعد التوقف، إنشاء قلب
-          createHeart(ball.style.left, y);
-          ball.remove();
-          return;
-        }
+    <div class="name" contenteditable="true"
+         style="top: 92%; left: 25%; transform: translate(-50%, -50%); font-family: 'Noto Kufi Arabic', serif; font-size: 15px;">
+        الاسم الثالث
+    </div>
 
-        ball.style.width = size + 'px';
-        ball.style.height = size + 'px';
-      }
-
-      ball.style.top = y + 'px';
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  }
-
-  function createHeart(x, y) {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-
-    // تحديد اللون العشوائي للقلب
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    heart.style.setProperty('--color', color);
-    heart.style.left = x;
-    heart.style.top = `${parseFloat(y) - 30}px`;
-
-    document.body.appendChild(heart);
-
-    // إزالة القلب بعد انتهاء التأثير
-    setTimeout(() => {
-      heart.remove();
-    }, 3000);
-  }
-
-  setInterval(createBall, 200);
-</script>
-
+    <div class="name" contenteditable="true"
+         style="top: 90%; left: 25%; transform: translate(-50%, -50%); font-family: 'Noto Kufi Arabic', serif; font-size: 15px;">
+        الاسم الثالث
+    </div>
+    
 </body>
 </html>
