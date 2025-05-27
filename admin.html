@@ -6,7 +6,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- خط عربي جميل -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo :wght@400;700&display=swap" rel="stylesheet">
-    <style>
+    <style>  
+/* مربع البحث */
+        .search-wrapper {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        #search-input {
+            width: 80%;
+            max-width: 500px;
+            padding: 12px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode #search-input {
+            background: rgba(255, 255, 255, 0.1);
+            color: #f1f1f1;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+            color: #ffffff;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 24px;
+            margin: 40px 0 20px;
+            color: #ffeec;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            padding-top: 20px;
+        }
+
+        .list-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .item {
+            flex: 1 1 calc(33% - 10px);
+            background: rgba(255, 255, 255, 0.15);
+            padding: 18px 25px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 600px) {
+            .item {
+                flex: 1 1 calc(50% - 10px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
         @charset "UTF-8";
         * {
             margin: 0;
@@ -128,10 +201,15 @@
     </style>
 </head>
 <body>
-<div class="container">
+<div class="container">  
+ <!-- مربع البحث -->
+    <div class="search-wrapper">
+        <input type="text" id="search-input" placeholder="ابحث عن نص..." onkeyup="filterArticles()" />
+    </div>
+
     <h1>لي قرات النص - الجزء الأول</h1>
     <!-- قائمة النصوص الأولى -->
-    <div class="list-grid">
+     <div class="list-grid" id="texts-list">
         <div class="item" onclick="openArticle('article1')">النص الأول</div>
         <div class="item" onclick="openArticle('article2')">النص الثاني</div>
         <div class="item" onclick="openArticle('article3')">النص الثالث</div>
@@ -368,6 +446,44 @@
 </div>
 
 <script>
+    // وظيفة البحث الشامل
+    function filterArticles() {
+        const input = document.getElementById("search-input");
+        const filter = input.value.toLowerCase();
+        const items = document.querySelectorAll("#texts-list .item");
+
+        items.forEach(item => {
+            const title = item.textContent || item.innerText;
+            const content = item.getAttribute("data-content") || "";
+            const fullText = (title + " " + content).toLowerCase();
+
+            if (fullText.includes(filter)) {
+                item.style.display = "";
+            } else {
+                item.style.display = "none";
+            }
+        });
+    }
+
+    // جلب المحتوى التلقائي لكل نص لإضافته إلى data-content
+    window.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll(".item").forEach(item => {
+            const id = item.getAttribute("onclick").match(/'([^']+)'/)[1];
+            const article = document.getElementById(id);
+            const content = article ? article.querySelector("p")?.innerText : "";
+            item.setAttribute("data-content", content);
+        });
+
+        // تحميل الوضع المحفوظ
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+            document.body.classList.add("dark-mode");
+            document.querySelectorAll(".container").forEach(el => el.classList.add("dark-mode"));
+            document.querySelectorAll(".item").forEach(el => el.classList.add("dark-mode"));
+        }
+    });
+
+    // فتح النص في صفحة جديدة
     function openArticle(id) {
         const article = document.getElementById(id);
         const title = article.querySelector('h2').innerText;
@@ -502,16 +618,7 @@
         `);
         win.document.close();
     }
-
-    // تحميل الوضع المحفوظ
-    window.addEventListener('DOMContentLoaded', () => {
-        const theme = localStorage.getItem('theme');
-        if (theme === 'dark') {
-            document.body.classList.add("dark-mode");
-            document.querySelectorAll(".container").forEach(el => el.classList.add("dark-mode"));
-            document.querySelectorAll(".item").forEach(el => el.classList.add("dark-mode"));
-        }
-    });
 </script>
+
 </body>
 </html>
