@@ -201,11 +201,14 @@
     </style>
 </head>
 <body>
-<div class="container">  
- <!-- مربع البحث -->
-    <div class="search-wrapper">
-        <input type="text" id="search-input" placeholder="ابحث عن نص..." onkeyup="filterArticles()" />
+<div class="container">   
+<!-- مربع البحث -->
+<div class="search-wrapper">
+    <input type="text" id="search-input" placeholder="ابحث عن نص..." onkeyup="filterArticles()" />
+    <div id="search-message" style="margin-top: 10px; font-size: 16px; color: #ccc; display: none;">
+        👇 هذه هي نتائج البحث...
     </div>
+</div>
 
     <h1>لي قرات النص - الجزء الأول</h1>
     <!-- قائمة النصوص الأولى -->
@@ -448,22 +451,34 @@
 <script>
     // وظيفة البحث الشامل
     function filterArticles() {
-        const input = document.getElementById("search-input");
-        const filter = input.value.toLowerCase();
-        const items = document.querySelectorAll("#texts-list .item");
+    const input = document.getElementById("search-input");
+    const message = document.getElementById("search-message");
+    const filter = input.value.toLowerCase().trim();
+    const items = document.querySelectorAll("#texts-list .item");
 
-        items.forEach(item => {
-            const title = item.textContent || item.innerText;
-            const content = item.getAttribute("data-content") || "";
-            const fullText = (title + " " + content).toLowerCase();
+    let hasResults = false;
 
-            if (fullText.includes(filter)) {
-                item.style.display = "";
-            } else {
-                item.style.display = "none";
-            }
-        });
+    items.forEach(item => {
+        const title = item.textContent || item.innerText;
+        const content = item.getAttribute("data-content") || "";
+        const fullText = (title + " " + content).toLowerCase();
+
+        if (fullText.includes(filter)) {
+            item.style.display = "";
+            hasResults = true;
+        } else {
+            item.style.display = "none";
+        }
+    });
+
+    // إظهار رسالة فقط إذا كان هناك بحث جارٍ
+    if (filter.length > 0) {
+        message.style.display = "block";
+        message.textContent = hasResults ? "👇 هذه هي نتائج البحث..." : "🚫 لا توجد نتائج مطابقة.";
+    } else {
+        message.style.display = "none";
     }
+}
 
     // جلب المحتوى التلقائي لكل نص لإضافته إلى data-content
     window.addEventListener('DOMContentLoaded', () => {
@@ -617,7 +632,23 @@
             </html>
         `);
         win.document.close();
+    } 
+// جلب المحتوى الداخلي لكل نص لاستخدامه في البحث
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll(".item").forEach(item => {
+        const id = item.getAttribute("onclick").match(/'([^']+)'/)[1];
+        const article = document.getElementById(id);
+        const content = article ? article.querySelector("p")?.innerText : "";
+        item.setAttribute("data-content", content);
+    });
+
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark') {
+        document.body.classList.add("dark-mode");
+        document.querySelectorAll(".container").forEach(el => el.classList.add("dark-mode"));
+        document.querySelectorAll(".item").forEach(el => el.classList.add("dark-mode"));
     }
+});
 </script>
 
 </body>
