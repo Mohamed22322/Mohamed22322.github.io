@@ -446,44 +446,26 @@
 
     <!-- قسم الجمعة -->
     <div id="friday" class="section friday-section">
-      <h1>🕌 دعاء الجمعة</h1> 
-      
-    <!-- الدعاء الاول -->
-           <div class="dua-box" data-default="true">
-        <p onclick="showFullDua(this.textContent)">اللهم اجعلني من عتقائك من النار في يوم الجمعة.</p>
-        <div class="buttons">
-          <button class="favorite-btn" onclick="toggleFavorite(this)">❤️ إضافة للمفضلة</button>
-          <button class="copy-btn" onclick="copyText(this)">📋 نسخ</button>
-          <button class="whatsapp-btn" onclick="shareOnWhatsApp(this)">💬 مشاركة</button>
-        </div> 
-         </div>
-             
-     <!-- الدعاء الثاني -->
-           <div class="dua-box" data-default="true">
-        <p onclick="showFullDua(this.textContent)">اللهم اجعلني من عتقائك من النار في يوم الجمعة.</p>
-        <div class="buttons">
-          <button class="favorite-btn" onclick="toggleFavorite(this)">❤️ إضافة للمفضلة</button>
-          <button class="copy-btn" onclick="copyText(this)">📋 نسخ</button>
-          <button class="whatsapp-btn" onclick="shareOnWhatsApp(this)">💬 مشاركة</button>
-        </div> 
-        </div>
-
-    <!-- الدعاء الثلاث -->
+      <h1>🕌 دعاء الجمعة</h1>
       <div class="dua-box" data-default="true">
         <p onclick="showFullDua(this.textContent)">اللهم اجعلني من عتقائك من النار في يوم الجمعة.</p>
         <div class="buttons">
           <button class="favorite-btn" onclick="toggleFavorite(this)">❤️ إضافة للمفضلة</button>
           <button class="copy-btn" onclick="copyText(this)">📋 نسخ</button>
           <button class="whatsapp-btn" onclick="shareOnWhatsApp(this)">💬 مشاركة</button>
-        </div> 
-         </div>
-        
+        </div>
       </div>
       <div class="add-dua-form">
         <input type="password" id="passwordFriday" placeholder="كلمة المرور">
         <input type="text" id="customDuaFriday" placeholder="أدخل دعاء جديد">
         <button onclick="addCustomDua('friday')">➕ إضافة دعاء</button>
       </div>
+    </div>
+
+    <!-- قسم المفضلة -->
+    <div id="favorites" class="section favorite-section">
+      <h1>❤️ الأدعية المفضلة</h1>
+      <ul id="favoritesList"></ul>
     </div>
 
     <!-- قسم أذكار الصباح والمساء -->
