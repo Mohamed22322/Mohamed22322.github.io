@@ -21,50 +21,51 @@
   </style>
 
   <!-- خط عربي جميل -->
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal :wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500&display=swap" rel="stylesheet">
 
   <style>
-.btn-doa {
-  position: absolute;
-  width: 100px;
-  height: 30px;
-  top: 66%;
-  left: 50%; /* يمكنك تعديل القيمة لوضع الزر في مكان مناسب */
-  transform: translate(-50%, -50%);
-  background-color: #4caf50; /* لون أخضر */
-  font-size: 20px;
-  color: white;
-  border: none;
-  border-radius: 15%;
-  cursor: pointer;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3), 0 0 0 4px #a18cd1;
-  z-index: 999;
-  transition: all 0.2s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  animation: pulse-green 2s infinite;
-}
+    .btn-doa {
+      position: absolute;
+      width: 100px;
+      height: 30px;
+      top: 66%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #4caf50; 
+      font-size: 20px;
+      color: white;
+      border: none;
+      border-radius: 15%;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3), 0 0 0 4px #a18cd1;
+      z-index: 999;
+      transition: all 0.2s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      animation: pulse-green 2s infinite;
+    }
 
-.btn-doa:hover {
-  transform: translate(-50%, -50%) scale(1.1);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.4), 0 0 0 5px #a18cd1;
-}
+    .btn-doa:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4), 0 0 0 5px #a18cd1;
+    }
 
-.btn-doa:active {
-  transform: translate(-50%, -50%) scale(0.95);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 0 0 5px #a18cd1;
-}
+    .btn-doa:active {
+      transform: translate(-50%, -50%) scale(0.95);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 0 0 5px #a18cd1;
+    }
 
-@keyframes pulse-green {
-  0%, 100% {
-    box-shadow: 0 6px 12px rgba(0, 150, 0, 0.3), 0 0 0 4px #a18cd1;
-  }
-  50% {
-    box-shadow: 0 8px 16px rgba(0, 255, 0, 0.5), 0 0 0 5px #a18cd1;
-  }
-}
+    @keyframes pulse-green {
+      0%, 100% {
+        box-shadow: 0 6px 12px rgba(0, 150, 0, 0.3), 0 0 0 4px #a18cd1;
+      }
+      50% {
+        box-shadow: 0 8px 16px rgba(0, 255, 0, 0.5), 0 0 0 5px #a18cd1;
+      }
+    }
+
     body {
       text-align: center;
       font-family: 'Tajawal', sans-serif;
@@ -133,7 +134,7 @@
       border: none;
       border-radius: 50%;
       cursor: pointer;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3), 0 0 0 4px #a18cd1; /* الحلقة البنفسجية */
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3), 0 0 0 4px #a18cd1;
       z-index: 999;
       transition: all 0.2s ease-in-out;
       animation: pulse 2s infinite;
@@ -241,52 +242,63 @@
   </style>
 </head>
 <body>
+
 <!-- زر الدعاء -->
-<a href="https://mohamed22322.github.io/ " target="_blank" class="btn-doa">
-  الأدعية
-</a>
+<a href="https://mohamed22322.github.io/"  target="_blank" class="btn-doa">الأدعية</a>
 
-  <div class="tasbih-container">
-    <!-- الصورة -->
-    <img src="https://i.ibb.co/LDTXWXFv/Picsart-25-05-16-14-49-41-782.png " alt="سبحة" class="tasbih-image">
+<div class="tasbih-container">
+  <!-- الصورة -->
+  <img src="https://i.ibb.co/LDTXWXFv/Picsart-25-05-16-14-49-41-782.png"  alt="سبحة" class="tasbih-image">
 
-    <!-- شاشة العدد بدون خلفية -->
-    <div id="counter" class="counter-display">0</div>
+  <!-- شاشة العدد بدون خلفية -->
+  <div id="counter" class="counter-display">0</div>
 
-    <!-- زر التسبيح الكبير -->
-    <button class="btn-large" onclick="increment()">+</button>
+  <!-- زر التسبيح الكبير -->
+  <button class="btn-large" onclick="increment()">+</button>
 
-    <!-- زر إعادة التعيين -->
-    <button class="btn-small" onclick="reset()">⟳</button>
-  </div>
+  <!-- زر إعادة التعيين -->
+  <button class="btn-small" onclick="reset()">⟳</button>
+</div>
 
-  <!-- نص ثابت -->
-  <div class="static-text">
-    إلهم صلي وسلم على سيدنا محمد عليه أفضل الصلاة والسلام
-  </div>
+<!-- نص ثابت -->
+<div class="static-text">
+  إلهم صلي وسلم على سيدنا محمد عليه أفضل الصلاة والسلام
+</div>
 
-  <!-- نص متحرك -->
-  <div class="moving-text">
-    <div class="marquee">🔰 تصميم _ محمد-حيدر_ارسال لي من تحيب- 🔰</div>
-  </div>
+<!-- نص متحرك -->
+<div class="moving-text">
+  <div class="marquee">🔰 تصميم _ محمد-حيدر_ارسال لي من تحيب- 🔰</div>
+</div>
 
-  <script>
-    // استرجاع العدد من localStorage إن وُجد
-    let count = parseInt(localStorage.getItem('tasbihCount')) || 0;
+<!-- ملف الصوت -->
+<audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-09a.mp3"  preload="auto"></audio>
+
+<script>
+  // استرجاع العدد من localStorage إن وُجد
+  let count = parseInt(localStorage.getItem('tasbihCount')) || 0;
+  document.getElementById('counter').textContent = count;
+
+  // دالة التشغيل العام للصوت
+  function playSound() {
+    const sound = document.getElementById("clickSound");
+    sound.currentTime = 0; // إعادة الصوت إلى البداية إذا كان يعمل بالفعل
+    sound.play();
+  }
+
+  function increment() {
+    count++;
     document.getElementById('counter').textContent = count;
+    localStorage.setItem('tasbihCount', count);
+    playSound(); // تشغيل الصوت عند التسبيح
+  }
 
-    function increment() {
-      count++;
-      document.getElementById('counter').textContent = count;
-      localStorage.setItem('tasbihCount', count);
-    }
-
-    function reset() {
-      count = 0;
-      document.getElementById('counter').textContent = count;
-      localStorage.removeItem('tasbihCount');
-    }
-  </script>
+  function reset() {
+    count = 0;
+    document.getElementById('counter').textContent = count;
+    localStorage.removeItem('tasbihCount');
+    playSound(); // تشغيل الصوت عند إعادة تعيين العداد
+  }
+</script>
 
 </body>
 </html>
