@@ -2,7 +2,8 @@
 <html dir="rtl" lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>تهاني العيد</title>
+  <title>تهاني العيد  كول عاموأنتمبخير</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -21,6 +22,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+      direction: rtl;
     }
 
     /* خلفية ثابتة مع تأثير ضوء خفيف يتحرك */
@@ -44,9 +46,9 @@
     @keyframes moveLight {
       0% {
         transform: translate(-25%, -25%) rotate(0deg);
-        -webkit-transform: translate(-25%, -25%) rotate(0deg); /* دعم Safari */
-        -moz-transform: translate(-25%, -25%) rotate(0deg);    /* دعم Firefox */
-        -o-transform: translate(-25%, -25%) rotate(0deg);      /* دعم Opera */
+        -webkit-transform: translate(-25%, -25%) rotate(0deg);
+        -moz-transform: translate(-25%, -25%) rotate(0deg);
+        -o-transform: translate(-25%, -25%) rotate(0deg);
       }
       100% {
         transform: translate(25%, 25%) rotate(360deg);
@@ -56,14 +58,15 @@
       }
     }
 
-    #textContainer {       
+    #textContainer {         
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      -webkit-transform: translate(-50%, -50%); /* دعم Safari */
+      -webkit-transform: translate(-50%, -50%);
       width: 90%;
       max-width: 600px;
+      min-height: 150px;
       border: 2px solid gold;
       border-radius: 20px;
       padding: 20px;
@@ -73,6 +76,7 @@
       user-select: none;
       font-size: 1.6em;
       white-space: pre-wrap;
+      line-height: 1.4;
       text-shadow:
         -1px -1px 0 #000,
          1px -1px 0 #000,
@@ -120,16 +124,38 @@
     /* زر تشغيل/إيقاف الصوت */
     #toggleAudioBtn {
       position: fixed;
-      bottom: 20px;
-      left: 20px;
+      bottom: 15px;
+      left: 15px;
       z-index: 9999;
       background: gold;
       color: black;
       border: none;
       padding: 10px 20px;
       border-radius: 10px;
-      font-size: 1em;
+      font-size: 1rem;
       cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    /* تعديل حجم الخط بناءً على حجم الشاشة */
+    @media (max-width: 600px) {
+      #textContainer {
+        font-size: 1.2em;
+        padding: 15px;
+      }
+    }
+
+    @media (min-width: 601px) and (max-width: 900px) {
+      #textContainer {
+        font-size: 1.4em;
+      }
+    }
+
+    @media (min-width: 901px) {
+      #textContainer {
+        font-size: 1.6em;
+      }
     }
   </style>
 </head>
@@ -154,7 +180,7 @@
 <button id="toggleAudioBtn" onclick="toggleAudio()">🔊 شغل الصوت</button>
 
 <!-- ملف الصوت -->
-<audio id="takbeerSound" src="https://d1.islamhouse.com/data/ar/ih_sounds/single_01/ar_Takbirat_AlEid.mp3"></audio>       
+<audio id="takbeerSound" src="https://d1.islamhouse.com/data/ar/ih_sounds/single_01/ar_Takbirat_AlEid.mp3"></audio>         
 
 <script>
   // --- تشغيل وإيقاف الصوت ---
