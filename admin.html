@@ -2,7 +2,7 @@
 <html dir="rtl" lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>  تهاني العيد كول عام  </title>
+  <title>تهاني العيد</title>
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -33,6 +33,9 @@
       height: 200%;
       background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
       animation: moveLight 10s ease-in-out infinite;
+      -webkit-animation: moveLight 10s ease-in-out infinite; /* دعم Safari و iOS */
+      -moz-animation: moveLight 10s ease-in-out infinite;    /* دعم Firefox */
+      -o-animation: moveLight 10s ease-in-out infinite;      /* دعم Opera قديم */
       pointer-events: none;
       z-index: 1;
       opacity: 0.1;
@@ -41,17 +44,24 @@
     @keyframes moveLight {
       0% {
         transform: translate(-25%, -25%) rotate(0deg);
+        -webkit-transform: translate(-25%, -25%) rotate(0deg); /* دعم Safari */
+        -moz-transform: translate(-25%, -25%) rotate(0deg);    /* دعم Firefox */
+        -o-transform: translate(-25%, -25%) rotate(0deg);      /* دعم Opera */
       }
       100% {
         transform: translate(25%, 25%) rotate(360deg);
+        -webkit-transform: translate(25%, 25%) rotate(360deg);
+        -moz-transform: translate(25%, 25%) rotate(360deg);
+        -o-transform: translate(25%, 25%) rotate(360deg);
       }
     }
 
-    #textContainer {    
+    #textContainer {       
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%); /* دعم Safari */
       width: 90%;
       max-width: 600px;
       border: 2px solid gold;
@@ -81,16 +91,28 @@
       pointer-events: none;
       z-index: 1000;
       animation-name: fall;
+      -webkit-animation-name: fall;
+      -moz-animation-name: fall;
+      -o-animation-name: fall;
       animation-timing-function: linear;
+      -webkit-animation-timing-function: linear;
+      -moz-animation-timing-function: linear;
+      -o-animation-timing-function: linear;
     }
 
     @keyframes fall {
       0% {
         transform: translateY(0) rotate(0);
+        -webkit-transform: translateY(0) rotate(0);
+        -moz-transform: translateY(0) rotate(0);
+        -o-transform: translateY(0) rotate(0);
         opacity: 1;
       }
       100% {
         transform: translateY(100vh) rotate(360deg);
+        -webkit-transform: translateY(100vh) rotate(360deg);
+        -moz-transform: translateY(100vh) rotate(360deg);
+        -o-transform: translateY(100vh) rotate(360deg);
         opacity: 0;
       }
     }
@@ -132,7 +154,7 @@
 <button id="toggleAudioBtn" onclick="toggleAudio()">🔊 شغل الصوت</button>
 
 <!-- ملف الصوت -->
-<audio id="takbeerSound" src="https://d1.islamhouse.com/data/ar/ih_sounds/single_01/ar_Takbirat_AlEid.mp3"></audio>    
+<audio id="takbeerSound" src="https://d1.islamhouse.com/data/ar/ih_sounds/single_01/ar_Takbirat_AlEid.mp3"></audio>       
 
 <script>
   // --- تشغيل وإيقاف الصوت ---
