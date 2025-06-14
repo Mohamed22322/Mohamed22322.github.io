@@ -172,76 +172,7 @@
         content = getEditorContent("📖 الصفحة الثالثة - " + pageLabels[2], "هنا النص الخاص بالصفحة الثالثة. استمتع بالقراءة!");
         break;
       case "4":
-        content = getEditorContent("📖 الصفحة الرابعة - " + pageLabels[3], "import requests
-from rich.console import Console
-from rich.table import Table
-import time
-
-# قائمة بالمواقع المجانية المحتملة التي قد تعمل بدون باقة
-FREE_SITES = [
-    "https://www.google.com", 
-    "https://dns.google", 
-    "https://www.cloudflare.com", 
-    "https://www.hide.me/en/proxy",   # بروكسي ويب مجاني
-    "http://www.speedtest.net",      # اختبار سرعة الإنترنت
-    "https://www.wikipedia.org", 
-    "https://archive.org",            # مكتبة رقمية مجانية
-    "https://www.project  Gutenberg.org",  # كتب إلكترونية مجانية
-]
-
-TIMEOUT = 5  # المهلة الزمنية لكل طلب
-
-
-def check_free_sites(sites: list, timeout: int = TIMEOUT) -> dict:
-    """
-    التحقق من أي المواقع المجانية متاحة.
-    """
-    working_sites = []
-    console = Console()
-
-    console.print("[+] بدء البحث عن خدمات الإنترنت المجانية...\n")
-
-    table = Table(title="نتائج فحص المواقع المجانية", show_header=True, header_style="bold blue")
-    table.add_column("الموقع", justify="center")
-    table.add_column("الحالة", justify="center")
-    table.add_column("الوقت (ثواني)", justify="center")
-
-    for site in sites:
-        try:
-            start_time = time.time()
-            response = requests.get(site, timeout=timeout)
-            elapsed = time.time() - start_time
-            status = "[green]متاح[/green]"
-            working_sites.append(site)
-        except:
-            elapsed = "-"
-            status = "[red]غير متاح[/red]"
-
-        table.add_row(
-            site,
-            status,
-            str(round(elapsed, 2)) if isinstance(elapsed, float) else elapsed
-        )
-
-    console.print(table)
-
-    return {
-        "status": len(working_sites) > 0,
-        "free_sites": working_sites
-    }
-
-
-if __name__ == "__main__":
-    console = Console()
-
-    result = check_free_sites(FREE_SITES)
-
-    if result["status"]:
-        console.print("\n[blue][✓] تم العثور على مواقع مجانية يمكنك استخدامها:[/blue]")
-        for site in result["free_sites"]:
-            console.print(f"  🔹 {site}")
-    else:
-        console.print("\n[yellow][-] لم يتم العثور على أي مواقع مجانية متاحة حاليًا.[/yellow]")");
+        content = getEditorContent("📖 الصفحة الرابعة - " + pageLabels[3], "محتوى الصفحة الرابعة...");
         break;
       case "5":
         content = getEditorContent("📖 الصفحة الخامسة - " + pageLabels[4], "محتوى الصفحة الخامسة...");
