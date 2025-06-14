@@ -181,7 +181,191 @@
         content = getEditorContent("📖 الصفحة السادسة - " + pageLabels[5], "محتوى الصفحة السادسة...");
         break;
       case "7":
-        content = getEditorContent("📖 الصفحة السابعة - " + pageLabels[6], "محتوى الصفحة السابعة...");
+        content = getEditorContent("📖 الصفحة السابعة - " + pageLabels[6], "import requests
+import time
+from rich.console import Console
+from rich.table import Table
+from rich.progress import track
+
+console = Console()
+
+# قائمة ضخمة وشاملة من المواقع والخدمات المجانية
+FREE_SERVICES = {
+    "Search Engines": [
+        "https://www.google.com", 
+        "https://duckduckgo.com", 
+        "https://www.bing.com", 
+        "https://yandex.com", 
+        "https://search.yahoo.com" 
+    ],
+    "DNS Services": [
+        "https://dns.google", 
+        "https://cloudflare-dns.com/dns-query", 
+        "https://dns.quad9.net", 
+        "https://opendns.com" 
+    ],
+    "Proxy Websites": [
+        "https://www.hide.me/en/proxy", 
+        "https://proxysite.com", 
+        "https://freesocialweb.org", 
+        "https://unblockit.pw", 
+        "https://webproxy.sc", 
+        "https://proxy69.com" 
+    ],
+    "Educational & Archive": [
+        "https://www.wikipedia.org", 
+        "https://archive.org", 
+        "https://www.gutenberg.org", 
+        "https://khanacademy.org", 
+        "https://ocw.mit.edu", 
+        "https://scholar.google.com" 
+    ],
+    "Speed Test": [
+        "http://www.speedtest.net",
+        "https://fast.com", 
+        "https://www.speedof.me" 
+    ],
+    "News & Info": [
+        "https://www.bbc.com/news", 
+        "https://edition.cnn.com", 
+        "https://news.google.com", 
+        "https://www.reuters.com", 
+        "https://www.aljazeera.net" 
+    ],
+    "Books & E-Learning": [
+        "https://www.projectgutenberg.org", 
+        "https://www.openlibrary.org", 
+        "https://www.freepdfbooks.com", 
+        "https://www.bookboon.com" 
+    ],
+    "Video & Media": [
+        "https://www.youtube.com", 
+        "https://vimeo.com", 
+        "https://archive.org/details/movies", 
+        "https://www.dailymotion.com" 
+    ],
+    "Code & Dev": [
+        "https://github.com", 
+        "https://replit.com", 
+        "https://codepen.io", 
+        "https://jsfiddle.net" 
+    ],
+    "Social Media (Sometimes Work)": [
+        "https://mobile.facebook.com", 
+        "https://twitter.com", 
+        "https://www.instagram.com" 
+    ],
+    "Government & Public Services": [
+        "https://www.un.org", 
+        "https://www.who.int", 
+        "https://data.gov", 
+        "https://www.usa.gov" 
+    ],
+    "Email & Tools": [
+        "https://mail.google.com", 
+        "https://outlook.live.com", 
+        "https://www.tutanota.com", 
+        "https://protonmail.com" 
+    ],
+    "Maps & Navigation": [
+        "https://www.google.com/maps", 
+        "https://openstreetmap.org", 
+        "https://www.mapquest.com" 
+    ],
+    "Translation": [
+        "https://translate.google.com", 
+        "https://www.deepl.com/translator", 
+        "https://translate.reverso.net" 
+    ]
+}
+
+TIMEOUT = 5  # ثواني
+
+
+def test_site(url: str, timeout: int = TIMEOUT) -> dict:
+    """اختبار حالة الموقع"""
+    try:
+        start_time = time.time()
+        response = requests.get(url, timeout=timeout)
+        elapsed = time.time() - start_time
+        return {
+            "url": url,
+            "status": "متاح",
+            "status_code": response.status_code,
+            "time_seconds": round(elapsed, 2),
+            "error": None
+        }
+    except requests.exceptions.RequestException as e:
+        return {
+            "url": url,
+            "status": "غير متاح",
+            "status_code": "-",
+            "time_seconds": "-",
+            "error": str(e)
+        }
+
+
+def scan_free_internet_services():
+    console.print("[+] بدء الفحص الشامل للمواقع والخدمات المجانية...\n", style="bold cyan")
+
+    results = []
+    working_sites = []
+
+    for category, sites in FREE_SERVICES.items():
+        console.print(f"\n[blue][*] فحص: {category}[/blue]")
+        for site in track(sites, description=f"جارٍ فحص {category}..."):
+            result = test_site(site)
+            if result["status"] == "متاح":
+                working_sites.append(result)
+            results.append(result)
+
+    return {"all_results": results, "working_sites": working_sites}
+
+
+def display_results(results):
+    table = Table(title="نتائج فحص الخدمات المجانية", show_header=True, header_style="bold magenta")
+    table.add_column("الموقع", justify="center")
+    table.add_column("الحالة", justify="center")
+    table.add_column("كود الرد", justify="center")
+    table.add_column("الوقت (ثواني)", justify="center")
+
+    for res in results["all_results"]:
+        status = "[green]✓ متاح[/green]" if res["status"] == "متاح" else "[red]✗ غير متاح[/red]"
+        table.add_row(
+            res["url"],
+            status,
+            str(res["status_code"]),
+            str(res["time_seconds"])
+        )
+
+    console.print(table)
+
+    if results["working_sites"]:
+        console.print("\n[green][✓] تم العثور على خدمات إنترنت مجانية:[/green]")
+        for site in results["working_sites"]:
+            console.print(f"  🔹 {site['url']} (⏱️ {site['time_seconds']} ثانية)")
+    else:
+        console.print("\n[yellow][-] لم يتم العثور على خدمات إنترنت مجانية متاحة حاليًا.[/yellow]")
+
+
+def save_results_to_file(results, filename="free_internet_results.txt"):
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write("=== نتائج فحص الخدمات المجانية ===\n\n")
+        for res in results["all_results"]:
+            f.write(f"الموقع: {res['url']}\n")
+            f.write(f"الحالة: {res['status']}\n")
+            f.write(f"كود الرد: {res['status_code']}\n")
+            f.write(f"الوقت: {res['time_seconds']} ثانية\n")
+            f.write("-" * 40 + "\n")
+
+    print(f"\n[+] تم حفظ النتائج في ملف: {filename}")
+
+
+if __name__ == "__main__":
+    results = scan_free_internet_services()
+    display_results(results)
+    save_results_to_file(results)");
+        break; ");
         break;
       case "8":
         content = getEditorContent("📖 الصفحة الثامنة - " + pageLabels[7], "محتوى الصفحة الثامنة...");
