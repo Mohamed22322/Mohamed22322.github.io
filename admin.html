@@ -1,223 +1,250 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>تهاني العيد  كول عاموأنتمبخير</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@600&display=swap" rel="stylesheet">
+  <title>مكتبة الصفحات</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      font-family: 'El Messiri', sans-serif;
-      overflow: hidden;
-      position: relative;
-      /* خلفية الصورة */
-      background-image: url('https://d.top4top.io/p_3444rhmvk0.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      direction: rtl;
-    }
-
-    /* خلفية ثابتة مع تأثير ضوء خفيف يتحرك */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-      animation: moveLight 10s ease-in-out infinite;
-      -webkit-animation: moveLight 10s ease-in-out infinite; /* دعم Safari و iOS */
-      -moz-animation: moveLight 10s ease-in-out infinite;    /* دعم Firefox */
-      -o-animation: moveLight 10s ease-in-out infinite;      /* دعم Opera قديم */
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.1;
-    }
-
-    @keyframes moveLight {
-      0% {
-        transform: translate(-25%, -25%) rotate(0deg);
-        -webkit-transform: translate(-25%, -25%) rotate(0deg);
-        -moz-transform: translate(-25%, -25%) rotate(0deg);
-        -o-transform: translate(-25%, -25%) rotate(0deg);
-      }
-      100% {
-        transform: translate(25%, 25%) rotate(360deg);
-        -webkit-transform: translate(25%, 25%) rotate(360deg);
-        -moz-transform: translate(25%, 25%) rotate(360deg);
-        -o-transform: translate(25%, 25%) rotate(360deg);
-      }
-    }
-
-    #textContainer {         
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      -webkit-transform: translate(-50%, -50%);
-      width: 90%;
-      max-width: 600px;
-      min-height: 150px;
-      border: 2px solid gold;
-      border-radius: 20px;
-      padding: 20px;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
-      color: gold;
-      z-index: 2;
-      user-select: none;
-      font-size: 1.6em;
-      white-space: pre-wrap;
-      line-height: 1.4;
-      text-shadow:
-        -1px -1px 0 #000,
-         1px -1px 0 #000,
-        -1px 1px 0 #000,
-         1px 1px 0 #000,
-         2px 2px 5px rgba(0, 0, 0, 0.8);
+      background: #f4f4f4;
+      padding: 40px;
+      margin: 0;
     }
 
-    /* كرات ذهبية تسقط من الأعلى */
-    .ball {
-      position: fixed;
-      top: -50px;
-      color: gold;
-      font-size: 2em;
-      user-select: none;
-      pointer-events: none;
-      z-index: 1000;
-      animation-name: fall;
-      -webkit-animation-name: fall;
-      -moz-animation-name: fall;
-      -o-animation-name: fall;
-      animation-timing-function: linear;
-      -webkit-animation-timing-function: linear;
-      -moz-animation-timing-function: linear;
-      -o-animation-timing-function: linear;
+    h1 {
+      margin-bottom: 30px;
+      color: #333;
     }
 
-    @keyframes fall {
-      0% {
-        transform: translateY(0) rotate(0);
-        -webkit-transform: translateY(0) rotate(0);
-        -moz-transform: translateY(0) rotate(0);
-        -o-transform: translateY(0) rotate(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-        -webkit-transform: translateY(100vh) rotate(360deg);
-        -moz-transform: translateY(100vh) rotate(360deg);
-        -o-transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      max-width: 400px;
+      margin: auto;
     }
 
-    /* زر تشغيل/إيقاف الصوت */
-    #toggleAudioBtn {
-      position: fixed;
-      bottom: 15px;
-      left: 15px;
-      z-index: 9999;
-      background: gold;
-      color: black;
+    .circle-btn-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .circle-btn {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: #007BFF;
+      color: white;
+      font-size: 24px;
       border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 1rem;
       cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+      transition: background 0.3s;
+      margin-bottom: 10px;
     }
 
-    /* تعديل حجم الخط بناءً على حجم الشاشة */
-    @media (max-width: 600px) {
-      #textContainer {
-        font-size: 1.2em;
-        padding: 15px;
-      }
+    .circle-btn:hover {
+      background-color: #0056b3;
     }
 
-    @media (min-width: 601px) and (max-width: 900px) {
-      #textContainer {
-        font-size: 1.4em;
-      }
+    .btn-label {
+      font-size: 16px;
+      color: #333;
     }
 
-    @media (min-width: 901px) {
-      #textContainer {
-        font-size: 1.6em;
-      }
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #dc3545;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+
+    .page-content {
+      max-width: 800px;
+      margin: auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    textarea {
+      width: 100%;
+      height: 300px;
+      padding: 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: vertical;
+      font-family: inherit;
+      margin-bottom: 15px;
+      direction: rtl;
+      white-space: pre-line;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button#clearBtn {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    button#copyBtn {
+      background-color: #17a2b8;
+      color: white;
+    }
+
+    button#shareBtn {
+      background-color: #25D366;
+      color: white;
     }
   </style>
 </head>
 <body>
 
-<!-- نص التهنئة -->
-<div id="textContainer">
-كُلْ عَامٍ وَأَنْتُمْ بِخَيْرٍ  
-🕋 🌕 🏮  
-         وَصِحَّةٌ وَسَعَادَةٌ  
-
-اللَّهُمَّ اجْعَلْ عِيدَنَا مَحْبَّتَكَ  
-
-     وَرِضَاكَ وَطَاعَتَكَ  
-            وَذِكْرَكَ  
-يَتَقَبَّلُ اللَّهُ مِنَّا وَمِنْكُمْ صَالِحَ  
-              الْأَعْمَالِ  
-🕋 🌕 🏮  
-</div>
-
-<!-- زر تشغيل/إيقاف الصوت -->
-<button id="toggleAudioBtn" onclick="toggleAudio()">🔊 شغل الصوت</button>
-
-<!-- ملف الصوت -->
-<audio id="takbeerSound" src="https://d1.islamhouse.com/data/ar/ih_sounds/single_01/ar_Takbirat_AlEid.mp3"></audio>         
-
 <script>
-  // --- تشغيل وإيقاف الصوت ---
-  const audio = document.getElementById("takbeerSound");
-  const toggleBtn = document.getElementById("toggleAudioBtn");
+  const params = new URLSearchParams(location.search);
+  const pageNum = params.get('page');
 
-  function toggleAudio() {
-    if (audio.paused) {
-      audio.currentTime = 0;
-      audio.play().catch(() => {
-        alert("يرجى السماح بالصوت في المتصفح.");
-      });
-      toggleBtn.innerHTML = "🔇 أوقف الصوت";
-    } else {
-      audio.pause();
-      toggleBtn.innerHTML = "🔊 شغل الصوت";
+  // عناوين وصفية للصفحات
+  const pageLabels = [
+    "مقدمة",
+    "الفصل الأول",
+    "الفصل الثاني",
+    "الفصل الثالث",
+    "الفصل الرابع",
+    "الفصل الخامس",
+    "الخاتمة",
+    "المراجع",
+    "الملحق",
+    "الصور"
+  ];
+
+  if (!pageNum) {
+    // الصفحة الرئيسية
+    document.write(`
+      <h1>📘 مكتبة الصفحات</h1>
+      <div class="button-grid">
+        ${Array.from({length: 10}, (_, i) => `
+          <div class="circle-btn-container">
+            <button class="circle-btn" onclick="goToPage(${i + 1})">📄 ${i + 1}</button>
+            <div class="btn-label">${pageLabels[i]}</div>
+          </div>
+        `).join('')}
+      </div>
+      <script>
+        function goToPage(num) {
+          location.href = '?page=' + num;
+        }
+      <\/script>
+    </body></html>
+    `);
+  } else {
+    let content = "";
+
+    switch(pageNum) {
+      case "1":
+        content = getEditorContent("📖 الصفحة الأولى - " + pageLabels[0], "هذا محتوى الصفحة الأولى. يمكنك وضع نص طويل هنا يشرح فكرة الصفحة.");
+        break;
+      case "2":
+        content = getEditorContent("📖 الصفحة الثانية - " + pageLabels[1], "هذه الصفحة الثانية، اكتب ما تريد من معلومات أو قصص أو تعليمات.");
+        break;
+      case "3":
+        content = getEditorContent("📖 الصفحة الثالثة - " + pageLabels[2], "هنا النص الخاص بالصفحة الثالثة. استمتع بالقراءة!");
+        break;
+      case "4":
+        content = getEditorContent("📖 الصفحة الرابعة - " + pageLabels[3], "محتوى الصفحة الرابعة...");
+        break;
+      case "5":
+        content = getEditorContent("📖 الصفحة الخامسة - " + pageLabels[4], "محتوى الصفحة الخامسة...");
+        break;
+      case "6":
+        content = getEditorContent("📖 الصفحة السادسة - " + pageLabels[5], "محتوى الصفحة السادسة...");
+        break;
+      case "7":
+        content = getEditorContent("📖 الصفحة السابعة - " + pageLabels[6], "محتوى الصفحة السابعة...");
+        break;
+      case "8":
+        content = getEditorContent("📖 الصفحة الثامنة - " + pageLabels[7], "محتوى الصفحة الثامنة...");
+        break;
+      case "9":
+        content = getEditorContent("📖 الصفحة التاسعة - " + pageLabels[8], "محتوى الصفحة التاسعة...");
+        break;
+      case "10":
+        content = getEditorContent("📖 الصفحة العاشرة - " + pageLabels[9], "محتوى الصفحة العاشرة...");
+        break;
+      default:
+        content = "<h2>⚠️ صفحة غير موجودة</h2><p>الصفحة المطلوبة غير متوفرة.</p>";
     }
+
+    // عرض الصفحة الفرعية
+    document.write(`
+      <div class="page-content">
+        ${content}
+        <br>
+        <a href="." class="back-btn">⬅️ العودة للواجهة</a>
+      </div>
+      <script>
+        function clearText() {
+          document.getElementById('editor').value = '';
+        }
+
+        function copyText() {
+          const textarea = document.getElementById('editor');
+          textarea.select();
+          textarea.setSelectionRange(0, 99999);
+          navigator.clipboard.writeText(textarea.value).then(() => {
+            alert('✅ تم نسخ النص بنجاح');
+          }).catch(err => {
+            alert('❌ فشل في نسخ النص: ' + err);
+          });
+        }
+
+        function shareOnWhatsApp() {
+          const text = document.getElementById('editor').value;
+          if (!text.trim()) {
+            alert('⚠️ لا يوجد نص للمشاركة');
+            return;
+          }
+          const encodedText = encodeURIComponent(text);
+          const whatsappUrl = 'https://api.whatsapp.com/send?text=' + encodedText;
+          window.open(whatsappUrl, '_blank');
+        }
+      <\/script>
+    </body></html>
+    `);
   }
 
-  // --- تساقط كرات ذهبية ---
-  function createBall() {
-    const ball = document.createElement('div');
-    ball.classList.add('ball');
-    ball.textContent = '🏮'; // يمكنك استبدال الرمز
-    ball.style.left = Math.random() * window.innerWidth + 'px';
-    ball.style.fontSize = (Math.random() * 20 + 20) + 'px';
-    ball.style.animationDuration = (Math.random() * 3 + 3) + 's';
-    ball.style.opacity = Math.random() * 0.5 + 0.5;
-
-    document.body.appendChild(ball);
-
-    setTimeout(() => {
-      ball.remove();
-    }, 6000);
+  function getEditorContent(title, defaultText) {
+    return `
+      <h2>${title}</h2>
+      <textarea id="editor" placeholder="اكتب أو الصق النص هنا...">${defaultText}</textarea>
+      <div class="actions">
+        <button id="clearBtn" onclick="clearText()">❌ مسح</button>
+        <button id="copyBtn" onclick="copyText()">📋 نسخ</button>
+        <button id="shareBtn" onclick="shareOnWhatsApp()">💬 مشاركة</button>
+      </div>
+    `;
   }
-
-  setInterval(createBall, 300); // كل 0.3 ثانية
 </script>
 
 </body>
