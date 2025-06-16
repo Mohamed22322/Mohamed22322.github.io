@@ -1,434 +1,112 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مكتبة الصفحات</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
-      background: #f4f4f4;
-      padding: 40px;
-      margin: 0;
-    }
-
-    h1 {
-      margin-bottom: 30px;
-      color: #333;
-    }
-
-    .button-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-      max-width: 400px;
-      margin: auto;
-    }
-
-    .circle-btn-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .circle-btn {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background-color: #007BFF;
-      color: white;
-      font-size: 24px;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s;
-      margin-bottom: 10px;
-    }
-
-    .circle-btn:hover {
-      background-color: #0056b3;
-    }
-
-    .btn-label {
-      font-size: 16px;
-      color: #333;
-    }
-
-    .back-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #dc3545;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 18px;
-    }
-
-    .page-content {
-      max-width: 800px;
-      margin: auto;
-      padding: 30px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    textarea {
-      width: 100%;
-      height: 300px;
-      padding: 15px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      resize: vertical;
-      font-family: inherit;
-      margin-bottom: 15px;
-      direction: rtl;
-      white-space: pre-line;
-    }
-
-    .actions {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 10px;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button#clearBtn {
-      background-color: #dc3545;
-      color: white;
-    }
-
-    button#copyBtn {
-      background-color: #17a2b8;
-      color: white;
-    }
-
-    button#shareBtn {
-      background-color: #25D366;
-      color: white;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>تسجيل الدخول</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: all 0.3s ease;
+        }
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+            display: block;
+        }
+        .welcome-container {
+            display: none;
+            text-align: center;
+            font-size: 24px;
+            color: green;
+            background-color: #e7f5e3;
+            padding: 50px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: auto;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 
+<!-- نموذج تسجيل الدخول -->
+<div class="login-container" id="loginFormContainer">
+    <h2>تسجيل الدخول</h2>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="اسم المستخدم" required>
+        <input type="password" id="password" placeholder="كلمة المرور" required>
+        <input type="submit" value="دخول">
+        <div class="error" id="errorMessage"></div>
+    </form>
+</div>
+
+<!-- رسالة الترحيب -->
+<div class="welcome-container" id="welcomeMessage">
+    <h1>👋 مرحبا بك!</h1>
+    <p>لقد سجلت الدخول بنجاح.</p>
+</div>
+
 <script>
-  const params = new URLSearchParams(location.search);
-  const pageNum = params.get('page');
+    const validUsername = "admin";
+    const validPassword = "123456";
 
-  // عناوين وصفية للصفحات
-  const pageLabels = [
-    "مقدمة",
-    "الفصل الأول",
-    "الفصل الثاني",
-    "الفصل الثالث",
-    "الفصل الرابع",
-    "الفصل الخامس",
-    "الخاتمة",
-    "المراجع",
-    "الملحق",
-    "الصور"
-  ];
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // منع إرسال النموذج
 
-  if (!pageNum) {
-    // الصفحة الرئيسية
-    document.write(`
-      <h1>📘 مكتبة الصفحات</h1>
-      <div class="button-grid">
-        ${Array.from({length: 10}, (_, i) => `
-          <div class="circle-btn-container">
-            <button class="circle-btn" onclick="goToPage(${i + 1})">📄 ${i + 1}</button>
-            <div class="btn-label">${pageLabels[i]}</div>
-          </div>
-        `).join('')}
-      </div>
-      <script>
-        function goToPage(num) {
-          location.href = '?page=' + num;
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('errorMessage');
+        const loginContainer = document.getElementById('loginFormContainer');
+        const welcomeContainer = document.getElementById('welcomeMessage');
+
+        if (username === validUsername && password === validPassword) {
+            // إخفاء نموذج الدخول وعرض رسالة الترحيب
+            loginContainer.style.display = 'none';
+            welcomeContainer.style.display = 'block';
+            document.body.style.justifyContent = 'flex-start';
+            document.body.style.paddingTop = '50px';
+            document.body.style.backgroundColor = '#e7f5e3';
+        } else {
+            errorMessage.textContent = 'اسم المستخدم أو كلمة المرور غير صحيحة.';
         }
-      <\/script>
-    </body></html>
-    `);
-  } else {
-    let content = "";
-
-    switch(pageNum) {
-      case "1":
-        content = getEditorContent("📖 الصفحة الأولى - " + pageLabels[0], "هذا محتوى الصفحة الأولى. يمكنك وضع نص طويل هنا يشرح فكرة الصفحة.");
-        break;
-      case "2":
-        content = getEditorContent("📖 الصفحة الثانية - " + pageLabels[1], "هذه الصفحة الثانية، اكتب ما تريد من معلومات أو قصص أو تعليمات.");
-        break;
-      case "3":
-        content = getEditorContent("📖 الصفحة الثالثة - " + pageLabels[2], "هنا النص الخاص بالصفحة الثالثة. استمتع بالقراءة!");
-        break;
-      case "4":
-        content = getEditorContent("📖 الصفحة الرابعة - " + pageLabels[3], "محتوى الصفحة الرابعة...");
-        break;
-      case "5":
-        content = getEditorContent("📖 الصفحة الخامسة - " + pageLabels[4], "محتوى الصفحة الخامسة...");
-        break;
-      case "6":
-        content = getEditorContent("📖 الصفحة السادسة - " + pageLabels[5], "محتوى الصفحة السادسة...");
-        break;
-      case "7":
-        content = getEditorContent("📖 الصفحة السابعة - " + pageLabels[6], "import requests
-import time
-from rich.console import Console
-from rich.table import Table
-from rich.progress import track
-
-console = Console()
-
-# قائمة ضخمة وشاملة من المواقع والخدمات المجانية
-FREE_SERVICES = {
-    "Search Engines": [
-        "https://www.google.com", 
-        "https://duckduckgo.com", 
-        "https://www.bing.com", 
-        "https://yandex.com", 
-        "https://search.yahoo.com" 
-    ],
-    "DNS Services": [
-        "https://dns.google", 
-        "https://cloudflare-dns.com/dns-query", 
-        "https://dns.quad9.net", 
-        "https://opendns.com" 
-    ],
-    "Proxy Websites": [
-        "https://www.hide.me/en/proxy", 
-        "https://proxysite.com", 
-        "https://freesocialweb.org", 
-        "https://unblockit.pw", 
-        "https://webproxy.sc", 
-        "https://proxy69.com" 
-    ],
-    "Educational & Archive": [
-        "https://www.wikipedia.org", 
-        "https://archive.org", 
-        "https://www.gutenberg.org", 
-        "https://khanacademy.org", 
-        "https://ocw.mit.edu", 
-        "https://scholar.google.com" 
-    ],
-    "Speed Test": [
-        "http://www.speedtest.net",
-        "https://fast.com", 
-        "https://www.speedof.me" 
-    ],
-    "News & Info": [
-        "https://www.bbc.com/news", 
-        "https://edition.cnn.com", 
-        "https://news.google.com", 
-        "https://www.reuters.com", 
-        "https://www.aljazeera.net" 
-    ],
-    "Books & E-Learning": [
-        "https://www.projectgutenberg.org", 
-        "https://www.openlibrary.org", 
-        "https://www.freepdfbooks.com", 
-        "https://www.bookboon.com" 
-    ],
-    "Video & Media": [
-        "https://www.youtube.com", 
-        "https://vimeo.com", 
-        "https://archive.org/details/movies", 
-        "https://www.dailymotion.com" 
-    ],
-    "Code & Dev": [
-        "https://github.com", 
-        "https://replit.com", 
-        "https://codepen.io", 
-        "https://jsfiddle.net" 
-    ],
-    "Social Media (Sometimes Work)": [
-        "https://mobile.facebook.com", 
-        "https://twitter.com", 
-        "https://www.instagram.com" 
-    ],
-    "Government & Public Services": [
-        "https://www.un.org", 
-        "https://www.who.int", 
-        "https://data.gov", 
-        "https://www.usa.gov" 
-    ],
-    "Email & Tools": [
-        "https://mail.google.com", 
-        "https://outlook.live.com", 
-        "https://www.tutanota.com", 
-        "https://protonmail.com" 
-    ],
-    "Maps & Navigation": [
-        "https://www.google.com/maps", 
-        "https://openstreetmap.org", 
-        "https://www.mapquest.com" 
-    ],
-    "Translation": [
-        "https://translate.google.com", 
-        "https://www.deepl.com/translator", 
-        "https://translate.reverso.net" 
-    ]
-}
-
-TIMEOUT = 5  # ثواني
-
-
-def test_site(url: str, timeout: int = TIMEOUT) -> dict:
-    """اختبار حالة الموقع"""
-    try:
-        start_time = time.time()
-        response = requests.get(url, timeout=timeout)
-        elapsed = time.time() - start_time
-        return {
-            "url": url,
-            "status": "متاح",
-            "status_code": response.status_code,
-            "time_seconds": round(elapsed, 2),
-            "error": None
-        }
-    except requests.exceptions.RequestException as e:
-        return {
-            "url": url,
-            "status": "غير متاح",
-            "status_code": "-",
-            "time_seconds": "-",
-            "error": str(e)
-        }
-
-
-def scan_free_internet_services():
-    console.print("[+] بدء الفحص الشامل للمواقع والخدمات المجانية...\n", style="bold cyan")
-
-    results = []
-    working_sites = []
-
-    for category, sites in FREE_SERVICES.items():
-        console.print(f"\n[blue][*] فحص: {category}[/blue]")
-        for site in track(sites, description=f"جارٍ فحص {category}..."):
-            result = test_site(site)
-            if result["status"] == "متاح":
-                working_sites.append(result)
-            results.append(result)
-
-    return {"all_results": results, "working_sites": working_sites}
-
-
-def display_results(results):
-    table = Table(title="نتائج فحص الخدمات المجانية", show_header=True, header_style="bold magenta")
-    table.add_column("الموقع", justify="center")
-    table.add_column("الحالة", justify="center")
-    table.add_column("كود الرد", justify="center")
-    table.add_column("الوقت (ثواني)", justify="center")
-
-    for res in results["all_results"]:
-        status = "[green]✓ متاح[/green]" if res["status"] == "متاح" else "[red]✗ غير متاح[/red]"
-        table.add_row(
-            res["url"],
-            status,
-            str(res["status_code"]),
-            str(res["time_seconds"])
-        )
-
-    console.print(table)
-
-    if results["working_sites"]:
-        console.print("\n[green][✓] تم العثور على خدمات إنترنت مجانية:[/green]")
-        for site in results["working_sites"]:
-            console.print(f"  🔹 {site['url']} (⏱️ {site['time_seconds']} ثانية)")
-    else:
-        console.print("\n[yellow][-] لم يتم العثور على خدمات إنترنت مجانية متاحة حاليًا.[/yellow]")
-
-
-def save_results_to_file(results, filename="free_internet_results.txt"):
-    with open(filename, "w", encoding="utf-8") as f:
-        f.write("=== نتائج فحص الخدمات المجانية ===\n\n")
-        for res in results["all_results"]:
-            f.write(f"الموقع: {res['url']}\n")
-            f.write(f"الحالة: {res['status']}\n")
-            f.write(f"كود الرد: {res['status_code']}\n")
-            f.write(f"الوقت: {res['time_seconds']} ثانية\n")
-            f.write("-" * 40 + "\n")
-
-    print(f"\n[+] تم حفظ النتائج في ملف: {filename}")
-
-
-if __name__ == "__main__":
-    results = scan_free_internet_services()
-    display_results(results)
-    save_results_to_file(results)");
-        break; ");
-        break;
-      case "8":
-        content = getEditorContent("📖 الصفحة الثامنة - " + pageLabels[7], "محتوى الصفحة الثامنة...");
-        break;
-      case "9":
-        content = getEditorContent("📖 الصفحة التاسعة - " + pageLabels[8], "محتوى الصفحة التاسعة...");
-        break;
-      case "10":
-        content = getEditorContent("📖 الصفحة العاشرة - " + pageLabels[9], "محتوى الصفحة العاشرة...");
-        break;
-      default:
-        content = "<h2>⚠️ صفحة غير موجودة</h2><p>الصفحة المطلوبة غير متوفرة.</p>";
-    }
-
-    // عرض الصفحة الفرعية
-    document.write(`
-      <div class="page-content">
-        ${content}
-        <br>
-        <a href="." class="back-btn">⬅️ العودة للواجهة</a>
-      </div>
-      <script>
-        function clearText() {
-          document.getElementById('editor').value = '';
-        }
-
-        function copyText() {
-          const textarea = document.getElementById('editor');
-          textarea.select();
-          textarea.setSelectionRange(0, 99999);
-          navigator.clipboard.writeText(textarea.value).then(() => {
-            alert('✅ تم نسخ النص بنجاح');
-          }).catch(err => {
-            alert('❌ فشل في نسخ النص: ' + err);
-          });
-        }
-
-        function shareOnWhatsApp() {
-          const text = document.getElementById('editor').value;
-          if (!text.trim()) {
-            alert('⚠️ لا يوجد نص للمشاركة');
-            return;
-          }
-          const encodedText = encodeURIComponent(text);
-          const whatsappUrl = 'https://api.whatsapp.com/send?text=' + encodedText;
-          window.open(whatsappUrl, '_blank');
-        }
-      <\/script>
-    </body></html>
-    `);
-  }
-
-  function getEditorContent(title, defaultText) {
-    return `
-      <h2>${title}</h2>
-      <textarea id="editor" placeholder="اكتب أو الصق النص هنا...">${defaultText}</textarea>
-      <div class="actions">
-        <button id="clearBtn" onclick="clearText()">❌ مسح</button>
-        <button id="copyBtn" onclick="copyText()">📋 نسخ</button>
-        <button id="shareBtn" onclick="shareOnWhatsApp()">💬 مشاركة</button>
-      </div>
-    `;
-  }
+    });
 </script>
 
 </body>
